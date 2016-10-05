@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title id="Description">This demo shows the default functionality of jqxNotification.
+        Multiple instances of the same notification can be opened at the same time.</title>
+    <meta name="keywords" content="jQuery notification, jQWidgets, jqxNotification, notification, unobtrusive notification" />
+    <meta name="description" content="This demo shows the default functionality of jqxNotification. Multiple instances of the same notification can be opened at the same time." />
+    <link rel="stylesheet" href="./jqxwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="./jquery/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxnotification.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxbuttons.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#messageNotification").jqxNotification({
+                width: 250, position: "top-right", opacity: 0.9,
+                autoOpen: false, animationOpenDelay: 800, autoClose: true, autoCloseDelay: 3000, template: "info"
+            });
+            $("#timeNotification").jqxNotification({
+                width: 100, position: "top-left", opacity: 0.9, showCloseButton: false,
+                autoOpen: false, autoClose: false, template: "time"
+            });
+            $("#openMessageNotification, #openTimeNotification").jqxButton({ width: 230, height: 30 });
+            $("#openMessageNotification").click(function () {
+                $("#messageNotification").jqxNotification("open");
+            });
+            $("#openTimeNotification").click(function () {
+                $("#timeNotification").jqxNotification("open");
+				startTimer(5);
+			});
+			function startTimer(timeLeft) {
+				var counter=setInterval(function() {
+					$(".timer").text(timeLeft);
+					timeLeft--;
+					if (timeLeft <= 0) {
+     					clearInterval(counter);
+     					//countdown ended, do something here
+     					$("#timeNotification").jqxNotification("closeLast");
+  					}
+				}, 1000); //1000 will  run it every 1 second
+            }
+        });
+    </script>
+</head>
+<body>
+    <!--Notifications-->
+    <div id="messageNotification">
+        <div>
+            Welcome to our website.
+        </div>
+    </div>
+    <div id="timeNotification">
+        <div style="font-size=large"><span id="currentTime" class="timer"></span></div>
+    </div>
+    <!--Layout-->
+    <button id="openMessageNotification">
+        Open a message notification</button>
+    <br />
+    <button id="openTimeNotification" style="margin-top: 10px;">
+        Open a countdown timer</button>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta content="initial-scale=1.0" name="viewport"/>
+	<meta name="msapplication-tap-highlight" content="no" />
+	<title id='title'>Presentation Round</title>
+
+	<link rel="stylesheet" href="./jqxwidgets/styles/jqx.base.css" type="text/css" />
+	<!-- link rel="stylesheet" href="./jqxwidgets/styles/jqx.mobile.css" type="text/css" / -->
+	<link rel="stylesheet" href="./jqxwidgets/styles/jqx.energyblue.css" type="text/css" />
+	<link rel="stylesheet" href="./jqxwidgets/styles/jqx.arctic.css" type="text/css" />
+	<script type="text/javascript" src="./jquery/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxcore.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxdata.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxradiobutton.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxbuttons.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxbuttongroup.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxscrollbar.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxlistbox.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxdropdownlist.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxmenu.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxgrid.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxgrid.pager.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxgrid.selection.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxinput.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxnotification.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxpanel.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxwindow.js"></script>
+	<script type="text/javascript" src="./jqxwidgets/jqxtree.js"></script>
+<!--
+ -->
+	<script type="text/javascript" src="./socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="./javascript/ooUtil.js"></script>
+	<script type="text/javascript" src="./javascript/abstractGame.js"></script>
+	<script type="text/javascript" src="./javascript/prGame.js"></script>
+	<script type="text/javascript" src="./javascript/olrGame.js"></script>
+	<script type="text/javascript" src="./javascript/crGame.js"></script>
+	<script type="text/javascript" src="./javascript/admin.js"></script>
+<!-- TBD: move to separate stylesheet -->
+<style>
+.uniform-margin {
+	margin: 10px 40px 10px 40px;
+}
+.marking-button {
+	padding:4px 16px;
+}
+.float-center {
+	float: right;
+	position: relative;
+	left: -25%;
+	text-align: left;
+}
+.command-menu {
+	style='float: right;
+	visibility: hidden;
+	margin-left: 5px;'
+}
+</style>
+
+</head>
+<body class='default'>
+
+    <div id="question_div" class="uniform-margin" >
+        <div>Question:</div>
+        <div id="current_question">
+        </div>
+    </div>
+    <div id="answer_div"  class="uniform-margin">
+		<div>Answer:</div>
+		<div id="current_answer">
+		</div>
+	</div>
+	<div id='marking_buttons'  class="uniform-margin" style="text-align:center" >
+		<button class="marking-button" id="mark_correct" >Correct</button>
+		<button class="marking-button" id="mark_incorrect" >Incorrect</button>
+		<button class="marking-button" id="show_answer" >Show Answer</button>
+	</div>
+	<div id='status_div' class="uniform-margin" style="text-align:center">
+		Not ready for player registration.
+	</div>
+    <div id='player_grid' style="font-size: 13px; font-family: Verdana; float: left;" class="uniform-margin" >
+        <div id="jqxgrid1"></div>
+    </div>
+    <div id='question_grid' style="font-size: 13px; font-family: Verdana; float: left;" class="uniform-margin" >
+		<div id='jqxgrid2'></div>
+    </div>
+    <div id='testing_buttons'  class="uniform-margin float-center" >
+    	<button class="marking-button" id="test_buzzers" >Test Buzzers </button>
+    	<button class="marking-button" id="ask_question" >Ask Question </button>
+    </div>
+
+    <div id='menu_div' style='height: 300px;'>
+    	<div id='menu' class="command-menu">
+    		<ul>
+    		<li id="game">Select Game</li>
+    		<li>License</li>
+    		<li id="ver">Ver.</li>
+    		</ul>
+        </div>
+    </div>
+<!-- "Setup" pop-up window -->
+	<div id='setup_window' >
+		<div>Setup</div>
+		<div style="overflow: hidden">
+			<div><label for="ip_address">Server IP address: </label><span id="ip_address"></span></div>
+			<div><label for="port_number">Server port #: </label><span id="port_number"></span></div>
+			<div><label for="projection_url">Projection url: </label><span id="projection_url"></span></div>
+			<div id='setup_buttons'  class="uniform-margin" style="text-align:center" >
+				<button class="marking-button" id="setup_okay" value="OK">Okay</button>
+			</div>
+		</div>
+	</div>
+<!-- "License" pop-up window -->
+	<div id='license_window' >
+		<div>License</div>
+		<div style="overflow: hidden">
+			<p>
+			<div>This program uses the <a href="http://opensource.org/licenses/AFL-3.0" target="_blank" >Academic License</a>.</div>
+			</p>
+			<p>Credits:</p>
+			<p><div>
+				The program uses jQWidgets (&nbsp;<img src="./jqxwidgets/styles/images/jqxAnimated.gif" />&nbsp;jQWidgets rock!) which are <b>not</b> free for commercial use.
+				<a href="http://www.jqwidgets.com/license/" target="_blank" >jQWidgets License</a>.
+			</div></p>
+			<p><div>The program uses sound files created by: &apos;nofeedback&apos; and &apos;akanimbus&apos;.</div></p>
+			<div id='license_buttons'  class="uniform-margin" style="text-align:center" >
+				<button class="marking-button" id="license_okay" value="OK">Okay</button>
+			</div>
+		</div>
+	</div>
+<!-- "Select Folder / File" pop-up window -->
+	<div id='select_folder_file_window'>
+		<div>Select Folder then File</div>
+		<div  style="overflow: hidden">
+			<div>
+				<div id='folder_tree' style="font-size: 13px; font-family: Verdana; float:left;" class="uniform-margin" ></div>
+				<div id='file_grid' style="font-size: 13px; font-family: Verdana;" class="uniform-margin" ></div>
+			</div>
+			<div id='folder_buttons'  class="uniform-margin" style="text-align:center; clear: both;" >
+				<button class="marking-button" id="select_file_cancel" value="Cancel" >Cancel</button>
+				<button class="marking-button" id="select_file_okay" value="OK">Okay</button>
+			</div>
+		</div>
+		<!-- use this field to remember what kind of file selection. -->
+		<input type="hidden" id="file_type"></input>
+	</div>
+<!-- "Select Game" pop-up window -->
+	<div id='select_game_window'>
+		<div>Select Game</div>
+		<div>
+			<div id="pr_game" class="uniform-margin">Presentation Round. No players, just projection of questions and answers. </div>
+			<div id="olr_game" class="uniform-margin">Open Lightning Round. Players can come and go. Scoring is simple. </div>
+			<div id="cr_game" class="uniform-margin">Countdown Round. Player ranking file needed. Scoring as per MathCounts chapter competition rules. </div>
+			<button class="marking-button uniform-margin" id="select_players_button" >Select Players File...</button>
+			<span id="crplayers_file_span"></span>
+			<div id='select_game_buttons'  class="uniform-margin" style="text-align:center" >
+				<button class="marking-button" id="select_game_cancel" value="Cancel" >Cancel</button>
+				<button class="marking-button" id="select_game_okay" value="OK">Next</button>
+			</div>
+		</div>
+	</div>
+<!-- Notifications -->
+	<div id="timeNotification">
+		<div style="font-size=large"><span id="currentTime" class="timer"></span></div>
+	</div>
+</body>
+</html>

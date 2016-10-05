@@ -1,0 +1,18 @@
+{
+  "logging": {
+    "application": {
+      "console": {
+        "level": "info",
+        "colorize": false
+      },
+      "file": {
+        "timestamp": true,
+        "json": false,
+        "filename": "/Users/Robert/log/open-lightning-round.log",
+        "maxfiles": 5,
+        "maxsize": 10485760,
+        "level": "info"
+      }
+    }
+  }
+}

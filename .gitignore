@@ -1,0 +1,6 @@
+# node modules should not be versioned
+node_modules/
+# OS X creates this file (unnecessarily)
+.DS_Store
+# WebStorm (Intellij) files should not be versioned
+.idea/

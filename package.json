@@ -1,0 +1,25 @@
+{
+  "name": "OpenLightningRound",
+  "version": "3.0.0",
+  "description": "High tech version of MathCounts Countdown Round.",
+  "main": "olrapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "node.js",
+    "websockets"
+  ],
+  "dependencies" : {
+	  "mime": "~1.2.7",
+	  "socket.io": "~1.0.6",
+	  "winston": "~0.8.3",
+	  "winston-config": "~0.4.2",
+	  "node-getopt": "~0.2.3",
+	  "play" : "~0.5.0"
+  },
+  "author": "Bob Rodini",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
