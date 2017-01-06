@@ -10,8 +10,8 @@ var currentRowsHeight;
  * displayQuestion - display the new question
  */
 function displayQuestion(question) {
-	$('#current_question').text(question);
-	$('#current_answer').text("");
+	$('#current_question').html(question);
+	$('#current_answer').html("");
 }
 //var playerList; // data for player grid.
 var playerSource =
@@ -77,7 +77,7 @@ function initWidgets () {
 	// save the initial font size.
 	currentFontSize = parseInt($("body").css('font-size'));
 	// just draw a sample admin screen to get the layout down
-	$("#current_question").jqxPanel({width: '100%', height: '200px', theme: 'energyblue'}); // height: '50px'
+	$("#current_question").jqxPanel({width: '100%', height: '250px', theme: 'energyblue'}); // height: '50px'
 	$("#current_answer").jqxPanel({width: '100%', height:  '50px', theme: 'energyblue'}); // height: '25px'
 	playerAdaptor = new $.jqx.dataAdapter(playerSource);
 	$("#player_grid").jqxGrid(

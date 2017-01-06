@@ -64,7 +64,7 @@ function displayTimer() {
  */
 function displayQuestion(question) {
 	displayTimer();
-	$('#current_question').text(question);
+	$('#current_question').html(question);
 	// clear the previous answer
 }
 /**
@@ -236,7 +236,7 @@ function initWidgets () {
 	//var vpWidth = $(window).width();
 	//var vpHeight = $(window).height();
 	//console.log("vpWidth: " + vpWidth + ", vpHeight: " + vpHeight);
-	$("#current_question").jqxPanel({ width: '100%', height: '50px', theme: 'energyblue'});
+	$("#current_question").jqxPanel({ width: '100%', height: '150px', theme: 'energyblue'});
 	$("#current_answer").jqxPanel({ width: '100%', height: '25px', theme: 'energyblue'});
 	$("#mark_correct").jqxButton({width: '25%', theme: 'energyblue'});
 	$("#mark_incorrect").jqxButton({width: '25%', theme: 'energyblue'});
@@ -258,7 +258,7 @@ function initWidgets () {
 	$("#player_grid").jqxGrid(
 	{
 		width: '90%',  // why 90%? don't know. 100% doesn't work.
-		height: 260,
+		height: 160,
 		theme: 'energyblue',
 		//source: null,  // no data to display
 		columns: [

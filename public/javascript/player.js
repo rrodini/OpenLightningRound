@@ -42,8 +42,9 @@ window.onload = function() {
 	});
 	socket.on('ask-question', function(data) {
 		console.log('>>ask-question');
-		message.style.fontSize = '24px';
-		message.value = data;
+		message.style.fontSize = '22px';
+//		message.value = data;
+		message.innerHTML = data;
 	});
 	socket.on('test-buzzers', function(data) {
 		console.log('>>test-buzzers');
