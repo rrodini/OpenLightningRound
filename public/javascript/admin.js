@@ -63,8 +63,24 @@ function displayTimer() {
  * displayQuestion - display the new question.
  */
 function displayQuestion(question) {
-	displayTimer();
-	$('#current_question').html(question);
+    var BACKTICK = "`";
+    displayTimer();
+	var backtick1 = question.indexOf(BACKTICK);
+    if (backtick1 > 0 ) {
+    	if (question.substr(backtick1+1, 3) === "img") {
+            // image here.  Turn backticks into brackets
+    		var backtick2 = question.lastIndexOf(BACKTICK);
+			question = question.substring(0, backtick1-1) + "<div> <" + question.substring(backtick1+1, backtick2-1) +
+				            "> </div>" + question.substring(backtick2+1);
+            $('#current_question').html(question);
+		} else {
+    		// math formula here.  Let MathJax do the work.
+            $('#current_question').html(question);
+        	MathJax.Hub.Queue(["Typeset", MathJax.Hub, "current_question"]);
+        }
+    } else {
+        $('#current_question').html(question);
+	}
 	// clear the previous answer
 }
 /**
@@ -251,7 +267,7 @@ function initWidgets () {
 		console.log('  mark-incorrect>>server');
 	});
 	$('#show_answer').click(function () {
-		var answer = $('#current_answer').text();
+		var answer = $('#current_answer').html();
 		socket.emit('show-answer', answer);
 		console.log('  show-answer>>server');
 	});

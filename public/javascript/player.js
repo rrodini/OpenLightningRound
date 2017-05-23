@@ -40,11 +40,26 @@ window.onload = function() {
 		// client was just told to refresh the screen so change status
 		button.textContent = 'Register';
 	});
-	socket.on('ask-question', function(data) {
+	socket.on('ask-question', function(question) {
+		var BACKTICK = "`";
 		console.log('>>ask-question');
 		message.style.fontSize = '22px';
-//		message.value = data;
-		message.innerHTML = data;
+        var backtick1 = question.indexOf(BACKTICK);
+        if (backtick1 > 0 ) {
+            if (question.substr(backtick1+1, 3) === "img") {
+                // image here.  Turn backticks into brackets
+                var backtick2 = question.lastIndexOf(BACKTICK);
+                question = question.substring(0, backtick1-1) + "<div> <" + question.substring(backtick1+1, backtick2-1) +
+                    "> </div>" + question.substring(backtick2+1);
+                message.innerHTML = question;
+            } else {
+                // math formula here.  Let MathJax do the work.
+                message.innerHTML = question;
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, "current_question"]);
+            }
+        } else {
+            message.innerHTML = question;
+        }
 	});
 	socket.on('test-buzzers', function(data) {
 		console.log('>>test-buzzers');

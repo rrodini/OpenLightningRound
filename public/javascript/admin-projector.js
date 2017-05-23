@@ -19,7 +19,7 @@ function setWindowTitle() {
  * displayAnswer - display the answer (for benefit of the audience)
  */
 function displayAnswer(answer) {
-    $('#current_answer').text(answer);
+    $('#current_answer').html(answer);
 }
 /**
  * updateScoreboard - update the scoreboard due to some change, e.g. player registration, player buzzes, etc.
