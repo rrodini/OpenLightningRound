@@ -16,7 +16,8 @@
 	  "socket.io": "~1.0.6",
 	  "winston": "~0.8.3",
 	  "winston-config": "~0.4.2",
-	  "node-getopt": "~0.2.3"
+	  "node-getopt": "~0.2.3",
+      "mathjax-node": "~1.1.0"
   },
   "author": "Bob Rodini",
   "license": "MIT",

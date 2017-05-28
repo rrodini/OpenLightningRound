@@ -91,7 +91,7 @@ window.onload = function() {
 	// shutdown the client
 	function shutdown() {
 		console.log('shutting down client');
-		socket.end();  // sends 'disconnect' event
+		// TBD: remove this line as this API is gone. socket.end();  // sends 'disconnect' event
 	}
 	// when user taps or clicks button send buzz message
 	button.onclick = function(event) {

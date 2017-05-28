@@ -63,25 +63,7 @@ function displayTimer() {
  * displayQuestion - display the new question.
  */
 function displayQuestion(question) {
-    var BACKTICK = "`";
-    displayTimer();
-	var backtick1 = question.indexOf(BACKTICK);
-    if (backtick1 > 0 ) {
-    	if (question.substr(backtick1+1, 3) === "img") {
-            // image here.  Turn backticks into brackets
-    		var backtick2 = question.lastIndexOf(BACKTICK);
-			question = question.substring(0, backtick1-1) + "<div> <" + question.substring(backtick1+1, backtick2-1) +
-				            "> </div>" + question.substring(backtick2+1);
-            $('#current_question').html(question);
-		} else {
-    		// math formula here.  Let MathJax do the work.
-            $('#current_question').html(question);
-        	MathJax.Hub.Queue(["Typeset", MathJax.Hub, "current_question"]);
-        }
-    } else {
-        $('#current_question').html(question);
-	}
-	// clear the previous answer
+	$('#current_question').html(question);
 }
 /**
  * processAskQuestion - the 'Ask Question' button was clicked.
@@ -96,7 +78,7 @@ function processAskQuestion() {
 	// new for game display
 	socket.emit('ask-question', index);
 	console.log('  ask-question>>server');
-	displayAnswer(answer);
+// TODO: delete this line.	displayAnswer(answer);
 	nextQuestion = index + 1;
 	// select (highlight) the next question row.
 	$('#question_grid').jqxGrid('selectrow', nextQuestion);
