@@ -35,8 +35,9 @@ window.onload = function() {
 	});
 	socket.on('deregister', function(data) {
 		console.log('>>deregister');
+		console.log(data.reason);
 		message.style.fontSize = '36px';
-		message.value = data.reason;
+		message.innerHTML = data.reason;
 		// client was just told to refresh the screen so change status
 		button.textContent = 'Register';
 	});

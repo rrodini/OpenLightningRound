@@ -78,7 +78,7 @@ function processAskQuestion() {
 	// new for game display
 	socket.emit('ask-question', index);
 	console.log('  ask-question>>server');
-// TODO: delete this line.	displayAnswer(answer);
+	displayAnswer(answer);
 	nextQuestion = index + 1;
 	// select (highlight) the next question row.
 	$('#question_grid').jqxGrid('selectrow', nextQuestion);
@@ -241,7 +241,8 @@ function initWidgets () {
 	$("#show_answer").jqxButton({width: '25%', theme: 'energyblue'});
  	disableMarkingButtons(true);
 	$('#mark_correct').click(function () {
-		socket.emit('mark-correct');
+        var answer = $('#current_answer').html();
+		socket.emit('mark-correct', answer);
 		console.log('  mark-correct>>server');
 	});
 	$('#mark_incorrect').click(function () {
@@ -539,7 +540,7 @@ window.onload = function() {
 	});
 	socket.on('show-answer', function(data) {
 		console.log('>>show-answer', data);
-		displayAnswer(data);
+// DELETE		displayAnswer(data);
 		// no need for the timer
 		hideTimer();
 	});
