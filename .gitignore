@@ -4,3 +4,5 @@ node_modules/
 .DS_Store
 # WebStorm (Intellij) files should not be versioned
 .idea/
+.env
+.git/
