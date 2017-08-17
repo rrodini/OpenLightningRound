@@ -27,19 +27,19 @@
     {"q": "How many cubic feet are in three cubic yards?", "a": "81 (cubic feet)"},
     {"q": "In the six-digit integer 3A6,792, what is the largest digit A so that the six-digit integer will be divisible by 3?", "a": "9"},
     {"q": "A regular polygon has exterior angles each measuring 15 degrees. How many sides does the polygon have?", "a": "24"},
-    {"q": "If A = 1/4 and B = -1/2, what is the absolute value of the difference between 18A and 18B? Express your answer as a decimal to the nearest tenth.", "a": "13.5"},
-    {"q": "In a spelling bee 50% of the students were eliminated after the first round. Only 1/3 of the remaining students were still in the contest after the second round. If 24 students were still in the contest after the second round, how many students began the competition?", "a": "144 (students)"},
+    {"q": "If A = `1/4` and B = `-1/2`, what is the absolute value of the difference between 18A and 18B? Express your answer as a decimal to the nearest tenth.", "a": "13.5"},
+    {"q": "In a spelling bee 50% of the students were eliminated after the first round. Only `1/3` of the remaining students were still in the contest after the second round. If 24 students were still in the contest after the second round, how many students began the competition?", "a": "144 (students)"},
     {"q": "What is the smallest positive integer with factors of 16, 15, and 12?", "a": "240"},
     {"q": "Point A has coordinates (x,6). When point A is reflected over the y-axis it land on point B.  What is the sum of the four coordinate values of points A and B?", "a": "12"},
     {"q": "An equilateral triangle and a square have equal perimeters. The side of the triangle measures 8 cm. What is the area of the square, in square centimeters?", "a": "36 (sq. cm.)"},
     {"q": "Isaac wrote the integers from 1 through 104, inclusive. How many digits did he write?", "a": "204 (digits)"},
-    {"q": "What is 20% of 1/4 of 120?", "a": "6"},
+    {"q": "What is 20% of `1/4` of 120?", "a": "6"},
     {"q": "Each day Siggy The Squirrel gathers 20 nuts and eats 14 nuts. If Siggy is starting June with 0 nuts, after how many consecutive days of collecting and eating nuts will he have enough nuts to eat until the end of June without collecting any additional nuts?", "a": "21 (days)"},
     {"q": "The measures of the angles of a triangle are in a ratio of 3:5:7. What is the degree measure of the largest angle?", "a": "84 (degrees)"},
     {"q": "The product of two consecutive positive integers is 380. What is the sum of the two integers?", "a": "39"},
     {"q": "What multiple of 15 is closest to 2009?", "a": "2010"},
     {"q": "The width, length, and height of a rectangular prism are each increased by 10%. What is the percent increase in the volume of the prism? Express your answer to the nearest whole number.", "a": "33 (percent)"},
     {"q": "What is the 5th term of an arithmetic sequence of 20 terms with first and last terms of 2 and 59, respectively?", "a": "14"},
-    {"q": "Khalil has to shovel snow off the sidewalk in front of his house. The sidewalk is 20 ft. long and 2 ft. wide. If the snow is 1/2 ft. deep, how many cubic feet of snow does Khalil have to shovel off the sidewalk?", "a": "20 (cu. ft.)"}
+    {"q": "Khalil has to shovel snow off the sidewalk in front of his house. The sidewalk is 20 ft. long and 2 ft. wide. If the snow is `1/2` ft. deep, how many cubic feet of snow does Khalil have to shovel off the sidewalk?", "a": "20 (cu. ft.)"}
 ]
 }
