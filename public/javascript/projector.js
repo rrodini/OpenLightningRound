@@ -176,6 +176,11 @@ window.onload = function() {
 		console.log('>>show-answer');
 		displayItem(data.item, data.size);
 	});
+    socket.on('buzz', function(data) {
+        console.log('>>buzz');
+        var audio = document.getElementById("buzzer");
+        audio.play();
+    });
 	// socket.on('update-scoreboard', function(data) {
 	// 	console.log('>>update-scoreboard');
 	// 	playerSource.localdata = data.playerList;
