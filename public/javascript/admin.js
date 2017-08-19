@@ -425,7 +425,7 @@ window.onload = function() {
 	initWidgets();
 	// open web socket back to host w/ reconnection set to 'false.'  
 	// Default is 'true' which has dead screens re-attach automatically.
-	socket = io("http://" + location.host + "/admin", {reconnection: false});
+	socket = io("//" + location.host + "/admin", {reconnection: false});
 	socket.on('info', function(data) {
 		console.log('>>info');
 		console.log("IP: " + data.serverIP);
