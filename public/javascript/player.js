@@ -26,7 +26,7 @@ window.onload = function() {
 	}
 	// open web socket back to host w/ reconnection set to 'false.'  
 	// Default is 'true' which has dead screens re-attach automatically.
-	var socket = io("http://" + location.host + "/player", {reconnection: false});
+	var socket = io("//" + location.host + "/player", {reconnection: false});
 	// This is how we receive messages from the server through the web socket
 	socket.on('registered', function(data) {
 		console.log('>>registered');

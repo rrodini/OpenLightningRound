@@ -160,7 +160,7 @@ window.onload = function() {
 	// });
 	// open web socket back to host w/ reconnection set to 'true'
 	// Default is 'true' which has dead screens re-attach automatically.
-	socket = io("http://" + location.host + "/projector", {reconnection: true});
+	socket = io("//" + location.host + "/projector", {reconnection: true});
 	socket.on('start-game', function(data) {
 		console.log('>>start-game');
 		gameType = data.gameType;
