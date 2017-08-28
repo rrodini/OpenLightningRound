@@ -5,12 +5,12 @@ var gameType; // type of game, e.g. "OLR" for "Open Lightning Round"
 /**
  * set the window title as per the game type.
  */
-function setWindowTitle() {
+function setWindowTitle(num) {
     var title = "Unknown Game!!";
     switch (gameType) {
-        case "PR":	title = "Presentation Round"; break;
-        case "OLR":	title = "Open Lightning Round"; break;
-        case "CR":	title = "Countdown Round"; break;
+        case "PR":	title = "PR Room #" + num; break;
+        case "OLR":	title = "OLR Room #" + num; break;
+        case "CR":	title = "CDR Room # + num"; break;
     }
     $("#title").text(title);
 

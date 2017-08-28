@@ -2,10 +2,12 @@
  * admin.js - administrator's javascript
  */
 /* global window, document, location, prompt, io, OlrGame, CrGame, PrGame */
+var loginCount = 0;
 var version; // version of application e.g. 3.1.49
 var gameType; // "type" of game
 var crPlayersFile; // path for file w. ranked players for Countdown Round
 var socket;	// communication socket on admin channel
+var roomNum; // room # of game
 var questionsFile; // path for file w. game questions
 var questionList;	// array of {"q": "What is 1+1?", "a": "2"}
 var nextQuestion;	// next question from questionList
@@ -195,17 +197,10 @@ function loadQuestions(questionList) {
  * processMenuItem - process a click on a menu item at the bottom
  */
 function processMenuItem(text) {
-	if (text === 'Save Game') {
-		// TODO: get the game results and save them to disk.
-		alert("Save game not implemented at this time.");
-	} else if (text === 'Start Game') {
-		// get the type of game to be created on all admins
-		// change label to "Save Game"
-		$('#menu ul li#game').html("Save Game");
-	} else if (text === 'Select Game') {
-		// pop up a window that allows admin to choose game type.
-		$('#file_type').val(""); // clear any previous value
-		$("#select_game_window").jqxWindow('open');
+	if (text === 'Stop Game') {
+//	    socket.emit('disconnect', "stop game clicked.");
+        socket.disconnect("stop game clicked.");
+	    console.log('  disconnect>>server');
 	} else if (text === 'License') {
 		// pop up a window with license information
 		$("#license_window").jqxWindow('open');
@@ -224,6 +219,17 @@ function disableMarkingButtons (disable) {
 function enableTestingButtons (enable) {
 	$('#test_buzzers').jqxButton({disabled: !enable });
 	$('#ask_question').jqxButton({disabled: !enable });
+}
+
+function login() {
+    $("#login_window").jqxWindow('open');
+    $("#passwd").focus();
+    loginCount++;
+    $("#login_window").on('close', function(event) {
+        var ok = event.args.dialogResult.OK;
+        //console.log('password: ' + $('#passwd').val() );
+        socket.emit('login', $('#passwd').val() );
+    });
 }
 
 /**
@@ -311,12 +317,20 @@ function initWidgets () {
 			$('#license_okay').jqxButton('focus');
 		}
 	});
+// popup window for "Login" dialog
+    $("#login_window").jqxWindow({
+        width: 400, height: 100, isModal: true, autoOpen: false, theme: 'energyblue',
+        okButton: $('#login_okay'),
+        initContent: function () {
+            // Don't put focus on window. Focus will be put on input field.
+        }
+    });
 // popup window for "Setup" dialog
 	$("#setup_window").jqxWindow({
-		width: 400, height: 140, isModal: true, autoOpen: false, theme: 'energyblue',
+		width: 400, height: 160, isModal: true, autoOpen: false, theme: 'energyblue',
 		okButton: $('#setup_okay'),
 		initContent: function () {
-			$('#setup_window').jqxWindow('focus');
+			//$('#setup_window').jqxWindow('focus');
 			$('#setup_okay').jqxButton('focus');
 		}
 	});
@@ -423,24 +437,55 @@ window.onload = function() {
 	// User must still click "Start Game"
 	// initialize all jQWidgets
 	initWidgets();
-	// open web socket back to host w/ reconnection set to 'false.'  
+	login();
+    // open web socket back to host w/ reconnection set to 'false.'
 	// Default is 'true' which has dead screens re-attach automatically.
-	socket = io("//" + location.host + "/admin", {reconnection: false});
+	socket = io("//" + location.host + "/admin", {transports: ['websocket'], reconnection: false});
+    socket.on('bad-login', function() {
+        console.log('>>bad-login');
+        $("#passwd").val("");
+        $("#passwd").attr("placeholder","Bad password. Try again.");
+        login();
+    });
+    socket.on('register', function(data ) {
+        console.log('>>register');
+
+        // force game selection at the beginning.
+        $("#select_game_window").jqxWindow('open');
+        console.log('>>info');
+        console.log("Room #: ", data.roomNum);
+        console.log("IP: " + data.serverIP);
+        console.log("port: " +data.serverPort);
+        roomNum = data.roomNum;
+        if (data.appVersion) {
+            version = data.appVersion;
+        }
+        $('#ver').text("Ver. " + version);
+        console.log("Ver: " + data.appVersion);
+        console.log('projector: localhost:' + data.serverPort + '/projector.html');
+        $('#room_num').html(data.roomNum.toString());
+        $('#ip_address').html(data.serverIP);
+        $('#port_number').html(data.serverPort);
+        $('#projection_url').html('localhost:'  + data.serverPort + '/projector.html');
+    });
+//  'info' message NOT sent
 	socket.on('info', function(data) {
 		console.log('>>info');
+		console.log("Room #: ", data.roomNum);
 		console.log("IP: " + data.serverIP);
 		console.log("port: " +data.serverPort);
+		roomNum = data.roomNum;
 		if (data.appVersion) {
 			version = data.appVersion;
 		}
 		$('#ver').text("Ver. " + version);
 		console.log("Ver: " + data.appVersion);
 		console.log('projector: localhost:' + data.serverPort + '/projector.html');
+        $('#room_num').html(data.roomNum.toString());
 		$('#ip_address').html(data.serverIP);
 		$('#port_number').html(data.serverPort);
 		$('#projection_url').html('localhost:'  + data.serverPort + '/projector.html');
 		$("#setup_window").jqxWindow('open');
-		// only the real admin, i.e. admin1 gets this message
 	});
 	socket.on('select-folder-file', function(data) {
 		console.log('>>select-folder-file');
@@ -486,7 +531,7 @@ window.onload = function() {
 					console.log("questionsFile: " + questionsFile);
 					console.log("playersFile: " + crPlayersFile);
 					socket.emit('start-game', {gameType: gameType, questionsFile: questionsFile, playersFile: crPlayersFile});
-						console.log('  start-game>>server');
+                    console.log('  start-game>>server');
 				} else {
 					// save the CR players file path
 					$("#crplayers_file_span").html(absPath);
@@ -510,6 +555,7 @@ window.onload = function() {
 	});
 	socket.on('start-game', function(data) {
 		console.log('>>start-game');
+        $("#setup_window").jqxWindow('open');
 		gameType = data.gameType;
 		if (data.questionsError) {
 			alert("Error reading questions file. Can't start");
@@ -519,10 +565,10 @@ window.onload = function() {
 			alert("Error reading players file. Can't start");
 			return;
 		}
-		setWindowTitle();
+		setWindowTitle(roomNum);
 		// ready to roll
 		// change label to "Start Game"
-		$('#menu ul li#game').html("Start Game");
+		//$('#menu ul li#game').html("Start Game");
 		enableTestingButtons(true);
 	});
 	socket.on('test-buzzers', function(data) {
@@ -534,7 +580,7 @@ window.onload = function() {
 		displayQuestion(data);
 	});
 	socket.on('update-marking-buttons', function (data) {
-		console.log('>>marking-buttons-update');
+		console.log('>>update-marking-buttons');
 		// data is true or false (literals).
 		disableMarkingButtons(data);
 	});
@@ -553,6 +599,17 @@ window.onload = function() {
 	//  'shutdown' message only sent by test driver.
 		window.close();
 	});
+
+    socket.on('disconnect', function (reason) {
+        window.alert("disconnect:" + reason);
+        console.log(">>disconnect reason: " + reason);
+    });
+
+    socket.on('error', function (reason) {
+        window.alert("error:" + reason.message);
+        console.log(">>error reason: " + reason.message);
+    });
+
 };
 
 

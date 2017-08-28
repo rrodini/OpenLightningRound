@@ -1,10 +1,22 @@
 /* global window, document, location, prompt, io */
 
+function promptForName() {
+    // modal prompt for name
+    var name = null;
+    var first = true;
+    // loop till a valid name is returned
+    while (name === null) {
+        name = prompt(first?"Enter your name.":"Don't hit cancel, hit ok.");
+        if (!name) { // empty string
+            name = null;
+        }
+        first = false;
+    }
+    return name;
+}
+
 window.onload = function() {
-	// get rid of address bar on Android
-	//DOES NOT WORK: setTimeout( function() {window.scrollTo(0, 1)}, 1000);
-	// only window.innerHeight seems to give reasonable value.
-	// subtract 6px x 2 due to padding in <body> tag
+    var invitationCount = 0;
     var window_height = window.innerHeight;
 	var splitHeight = (window_height / 3) - 12;
 	//console.log("document.height: " + splitHeight);
@@ -13,23 +25,32 @@ window.onload = function() {
 	var button = document.getElementById("button");
 	button.style.height = "" + splitHeight + "px";
 	var title = document.getElementById("title");
-	// modal prompt for name
-	var name = null;
-	var first = true;
-	// loop till a valid name is returned
-	while (name === null) {
-		name = prompt(first?"Enter your name":"Don't hit cancel, enter name");
-		if (!name) { // empty string
-			name = null;
-		}
-		first = false;
-	}
-	// open web socket back to host w/ reconnection set to 'false.'  
+	var name; // name of the player.
+	// open web socket back to host w/ reconnection set to 'false.'
 	// Default is 'true' which has dead screens re-attach automatically.
-	var socket = io("//" + location.host + "/player", {reconnection: false});
+	var socket = io("//" + location.host + "/player", {transports: ['websocket'], reconnection: false});
 	// This is how we receive messages from the server through the web socket
+    socket.on('invitation', function () {
+        console.log(">>invitation");
+        invitationCount++;
+        if (invitationCount <= 3) {
+            var num = window.prompt("Enter room #:");
+            roomNumber = parseInt(num);
+            socket.emit("join-room", num);
+        } else {
+            alert("Please refresh page and try again.")
+        }
+    });
+    socket.on('room-joined', function(data) {
+        console.log('>>room-joined');
+        // modal prompt for name
+        name = promptForName();
+        socket.emit('register', {'name': name});
+        console.log('  register>>server');
+    });
 	socket.on('registered', function(data) {
-		console.log('>>registered');
+		console.log('>>registered room #' + data);
+        message.innerHTML = "";
 		title.text = name;
 		button.textContent = 'Buzz';
 	});
@@ -39,7 +60,12 @@ window.onload = function() {
 		message.style.fontSize = '36px';
 		message.innerHTML = data.reason;
 		// client was just told to refresh the screen so change status
-		button.textContent = 'Register';
+        setTimeout(function () {
+            "use strict";
+           name = promptForName();
+           socket.emit('register', {'name': name});
+           console.log('  register>>server');
+        }, 2000);
 	});
 	socket.on('ask-question', function(question) {
 		var BACKTICK = "`";
@@ -65,13 +91,18 @@ window.onload = function() {
 	socket.on('test-buzzers', function(data) {
 		console.log('>>test-buzzers');
 		// clear any question in message area
-		message.value = "";
+		message.innerHTML = "";
 	});
-	socket.on('admin1-shutdown', function(data) {
-		console.log('>>admin1-shutdown');
-		// admin1 is gone, so shutdown since re-registration will be required
-		shutdown();
-	});
+
+    socket.on('disconnect', function (reason) {
+        window.alert("disconnect:" + reason);
+        console.log(">>disconnect reason: " + reason);
+    });
+
+    socket.on('error', function (reason) {
+        window.alert("error:" + reason.message);
+        console.log(">>error reason: " + reason.message);
+    });
 
 	function flash_background() {
 		var body = document.getElementById("body");
@@ -106,7 +137,5 @@ window.onload = function() {
 			console.log('  buzz>>server');
 		}
 	};
-	
-	window.onunload = shutdown;
 
 };

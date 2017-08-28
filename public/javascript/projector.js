@@ -3,9 +3,11 @@
  */
 /* global window, document, location, prompt, io, OlrGame, CrGame, PrGame */
 var socket;	// communication socket on projector channel.
-var SIZE_FACTOR = 1.0625;
-var currentFontSize;
-var currentRowsHeight;
+var roomNum; // room # for game.
+var invitationCount = 0; // room number match attempts.
+// var SIZE_FACTOR = 1.0625;
+// var currentFontSize;
+// var currentRowsHeight;
 /**
  * displayItem - display the new item (Question / Answers / etc.)
  */
@@ -160,11 +162,22 @@ window.onload = function() {
 	// });
 	// open web socket back to host w/ reconnection set to 'true'
 	// Default is 'true' which has dead screens re-attach automatically.
-	socket = io("//" + location.host + "/projector", {reconnection: true});
+	socket = io("//" + location.host + "/projector", {transports: ['websocket'], reconnection: false});
+    socket.on('invitation', function () {
+        console.log(">>invitation");
+        invitationCount++;
+        if (invitationCount <= 3) {
+            var num = window.prompt("Enter room #:");
+            roomNum = parseInt(num);
+            socket.emit("join-room", num);
+        } else {
+            alert("Please refresh page and try again.")
+        }
+    });
 	socket.on('start-game', function(data) {
 		console.log('>>start-game');
 		gameType = data.gameType;
-		setWindowTitle();
+		setWindowTitle(roomNum);
 	});
 	socket.on('ask-question', function(data) {
 		console.log('>>ask-question ');
@@ -181,7 +194,17 @@ window.onload = function() {
         var audio = document.getElementById("buzzer");
         audio.play();
     });
-	// socket.on('update-scoreboard', function(data) {
+    socket.on('disconnect', function (reason) {
+        window.alert("disconnect:" + reason);
+        console.log(">>disconnect reason: " + reason);
+    });
+
+    socket.on('error', function (reason) {
+        window.alert("error:" + reason.message);
+        console.log(">>error reason: " + reason.message);
+    });
+
+    // socket.on('update-scoreboard', function(data) {
 	// 	console.log('>>update-scoreboard');
 	// 	playerSource.localdata = data.playerList;
 	// 	updateScoreboard(data.status, data.playerList);

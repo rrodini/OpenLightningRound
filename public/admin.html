@@ -91,20 +91,31 @@
     <div id='menu_div' >
     	<div id='menu' class="command-menu">
     		<ul>
-    		<li id="game">Select Game</li>
+    		<li id="game">Stop Game</li>
     		<li>License</li>
     		<li id="ver">Ver.</li>
     		</ul>
         </div>
     </div>
+<!-- "Login" pop-up window -->
+	<div id='login_window' >
+		<div>Login</div>
+		<div style="overflow: hidden">
+			<div><label for="passwd">Password: </label><input id="passwd" type="password" placeholder="Enter password."></></div>
+			<div id='login_buttons'  class="uniform-margin" style="text-align:center" >
+				<button  id="login_okay" value="OK">Okay</button>
+			</div>
+		</div>
+	</div>
 <!-- "Setup" pop-up window -->
 	<div id='setup_window' >
 		<div>Setup</div>
 		<div style="overflow: hidden">
+            <div><label for="room_num">Room #: </label><span id="room_num"></span></div>
 			<div><label for="ip_address">Server IP address: </label><span id="ip_address"></span></div>
 			<div><label for="port_number">Server port #: </label><span id="port_number"></span></div>
 			<div><label for="projection_url">Projection url: </label><span id="projection_url"></span></div>
-			<span style="color: red;" >Bring up projector window now!</span>
+			<span style="color: red;" >Write down room #, start projector!</span>
 			<div id='setup_buttons'  class="uniform-margin" style="text-align:center" >
 				<button  id="setup_okay" value="OK">Okay</button>
 			</div>
