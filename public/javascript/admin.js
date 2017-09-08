@@ -25,7 +25,6 @@ function processTestBuzzers() {
  * stopTimer - low level interface to stop the timer
  */
 function stopTimer() {
-	$(".timer").text("");
 	clearInterval(timerCounter);
 }
 /**
@@ -40,7 +39,7 @@ function startTimer(timeLeft) {
 		if (timeLeft <= 0) {
 			clearInterval(timerCounter);
 			//countdown ended, do something here
-			$("#timeNotification").jqxNotification("closeLast");  //closeLast
+			$("#timeNotification").jqxNotification("closeLast");
 		}
 	}, 1000); //1000 will  run it every 1 second
 }
@@ -48,9 +47,8 @@ function startTimer(timeLeft) {
  * hideTimer - high level interface to close the timer window
  */
 function hideTimer() {
-	stopTimer();
-	$("#timeNotification").jqxNotification("closeLast");  //closeLast
-
+    stopTimer();
+	$("#timeNotification").jqxNotification("closeLast");
 }
 /**
  * displayTimer - high level interface to display the timer window.
@@ -65,6 +63,7 @@ function displayTimer() {
  * displayQuestion - display the new question.
  */
 function displayQuestion(question) {
+	displayTimer();
 	$('#current_question').html(question);
 }
 /**
@@ -257,6 +256,8 @@ function initWidgets () {
 	});
 	$('#show_answer').click(function () {
 		var answer = $('#current_answer').html();
+		// do not need timer.
+		hideTimer();
 		socket.emit('show-answer', answer);
 		console.log('  show-answer>>server');
 	});
@@ -320,7 +321,7 @@ function initWidgets () {
 // popup window for "Login" dialog
     $("#login_window").jqxWindow({
         width: 400, height: 100, isModal: true, autoOpen: false, theme: 'energyblue',
-        okButton: $('#login_okay'),
+        okButton: $('#passwd_okay'),
         initContent: function () {
             // Don't put focus on window. Focus will be put on input field.
         }
@@ -583,12 +584,6 @@ window.onload = function() {
 		console.log('>>update-marking-buttons');
 		// data is true or false (literals).
 		disableMarkingButtons(data);
-	});
-	socket.on('show-answer', function(data) {
-		console.log('>>show-answer', data);
-// DELETE		displayAnswer(data);
-		// no need for the timer
-		hideTimer();
 	});
 	socket.on('update-scoreboard', function(data) {
 		console.log('>>update-scoreboard');
