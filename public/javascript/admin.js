@@ -263,7 +263,7 @@ function initWidgets () {
 	});
 	$("#player_grid").jqxGrid(
 	{
-		width: '90%',  // why 90%? don't know. 100% doesn't work.
+		//width: '100%',  // why 90%? don't know. 100% doesn't work.
 		height: 160,
 		theme: 'energyblue',
 		//source: null,  // no data to display
@@ -275,7 +275,7 @@ function initWidgets () {
 	});
 	$("#question_grid").jqxGrid(
 	{
-		width: '90%',
+		//width: '100%',
 		height: 260,
 		theme: 'energyblue',
 		// source: null,  // no data to display
@@ -328,10 +328,9 @@ function initWidgets () {
     });
 // popup window for "Setup" dialog
 	$("#setup_window").jqxWindow({
-		width: 400, height: 160, isModal: true, autoOpen: false, theme: 'energyblue',
+		width: 400, height: 150, isModal: true, autoOpen: false, theme: 'energyblue',
 		okButton: $('#setup_okay'),
 		initContent: function () {
-			//$('#setup_window').jqxWindow('focus');
 			$('#setup_okay').jqxButton('focus');
 		}
 	});
@@ -467,7 +466,6 @@ window.onload = function() {
         $('#room_num').html(data.roomNum.toString());
         $('#ip_address').html(data.serverIP);
         $('#port_number').html(data.serverPort);
-        $('#projection_url').html('localhost:'  + data.serverPort + '/projector.html');
     });
 //  'info' message NOT sent
 	socket.on('info', function(data) {
@@ -485,7 +483,6 @@ window.onload = function() {
         $('#room_num').html(data.roomNum.toString());
 		$('#ip_address').html(data.serverIP);
 		$('#port_number').html(data.serverPort);
-		$('#projection_url').html('localhost:'  + data.serverPort + '/projector.html');
 		$("#setup_window").jqxWindow('open');
 	});
 	socket.on('select-folder-file', function(data) {
