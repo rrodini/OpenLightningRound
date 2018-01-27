@@ -452,8 +452,8 @@ window.onload = function() {
 
         // force game selection at the beginning.
         $("#select_game_window").jqxWindow('open');
-        console.log('>>info');
-        console.log("Room #: ", data.roomNum);
+        //console.log('>>info');
+        console.log("room #: ", data.roomNum);
         console.log("IP: " + data.serverIP);
         console.log("port: " +data.serverPort);
         roomNum = data.roomNum;
@@ -461,30 +461,35 @@ window.onload = function() {
             version = data.appVersion;
         }
         $('#ver').text("Ver. " + version);
-        console.log("Ver: " + data.appVersion);
+        console.log("ver: " + data.appVersion);
         console.log('projector: localhost:' + data.serverPort + '/projector.html');
+        $('#room_div').html("Room #" + data.roomNum.toString());
         $('#room_num').html(data.roomNum.toString());
         $('#ip_address').html(data.serverIP);
         $('#port_number').html(data.serverPort);
+        // display info about questions to projector
+        socket.emit('ask-question', index);
+        console.log('  ask-question>>server');
+
     });
 //  'info' message NOT sent
-	socket.on('info', function(data) {
-		console.log('>>info');
-		console.log("Room #: ", data.roomNum);
-		console.log("IP: " + data.serverIP);
-		console.log("port: " +data.serverPort);
-		roomNum = data.roomNum;
-		if (data.appVersion) {
-			version = data.appVersion;
-		}
-		$('#ver').text("Ver. " + version);
-		console.log("Ver: " + data.appVersion);
-		console.log('projector: localhost:' + data.serverPort + '/projector.html');
-        $('#room_num').html(data.roomNum.toString());
-		$('#ip_address').html(data.serverIP);
-		$('#port_number').html(data.serverPort);
-		$("#setup_window").jqxWindow('open');
-	});
+// 	socket.on('info', function(data) {
+// 		console.log('>>info');
+// 		console.log("Room #: ", data.roomNum);
+// 		console.log("IP: " + data.serverIP);
+// 		console.log("port: " +data.serverPort);
+// 		roomNum = data.roomNum;
+// 		if (data.appVersion) {
+// 			version = data.appVersion;
+// 		}
+// 		$('#ver').text("Ver. " + version);
+// 		console.log("Ver: " + data.appVersion);
+// 		console.log('projector: localhost:' + data.serverPort + '/projector.html');
+//         $('#room_num').html(data.roomNum.toString());
+// 		$('#ip_address').html(data.serverIP);
+// 		$('#port_number').html(data.serverPort);
+// 		$("#setup_window").jqxWindow('open');
+// 	});
 	socket.on('select-folder-file', function(data) {
 		console.log('>>select-folder-file');
 		var folders = data.folders;
@@ -575,7 +580,8 @@ window.onload = function() {
 	});
 	socket.on('ask-question', function(data) {
 		console.log('>>ask-question');
-		displayQuestion(data);
+		displayQuestion(data.q);
+		displayAnswer(data.a)
 	});
 	socket.on('update-marking-buttons', function (data) {
 		console.log('>>update-marking-buttons');
