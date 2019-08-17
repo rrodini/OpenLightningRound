@@ -1,0 +1,16 @@
+.jqx-panel {
+    font-family: Times New Roman, serif;
+    font-size: 12pt;
+}
+.uniform-margin {
+    margin: 10px 40px 10px 40px;
+}
+.marking-button {
+    padding:4px 16px;
+}
+.float-center {
+    text-align: center;
+}
+.bottom { /* unsuccessful attempt to float menu at bottom of screen.  */
+    position:absolute ; bottom: 0;
+}

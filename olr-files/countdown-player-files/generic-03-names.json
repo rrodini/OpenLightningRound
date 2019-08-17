@@ -1,0 +1,8 @@
+{
+  "description": "Generic 3: Student1,.., Student3.",
+  "players": [
+    { "rank": 1, "name": "Student1" },
+    { "rank": 2, "name": "Student2" },
+    { "rank": 3, "name": "Student3" }
+  ]
+}

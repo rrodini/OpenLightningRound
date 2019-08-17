@@ -1,13 +1,45 @@
-[
- { "1": "Jack"},
- { "2": "Tommy"},
- { "3": "Liam"},
- { "4": "Gabe"},
- { "5": "Hayden"},
- { "6": "Mary"},
- { "7": "Anna"},
- { "8": "Daniel"},
- { "9": "Josh"},
- {"10": "Michael"},
- {"11": "Kyrah"}
-]
+{
+  "description": "Catholic school students for CDR on 01/06/17.",
+  "players": [
+    {
+      "rank": 1,
+      "name": "Jack"
+    },
+    {
+      "rank": 2,
+      "name": "Tommy"
+    },
+    {
+      "rank": 3,
+      "name": "Liam"
+    },
+    {
+      "rank": 4,
+      "name": "Gabe"
+    },
+    {
+      "rank": 5,
+      "name": "Hayden"
+    },
+    {
+      "rank": 6,
+      "name": "Mary"
+    },
+    {
+      "rank": 7,
+      "name": "Anna"
+    },
+    {
+      "rank": 8,
+      "name": "Daniel"
+    },
+    {
+      "rank": 9,
+      "name": "Josh"
+    },
+    {
+      "rank": 10,
+      "name": "Michael"
+    }
+  ]
+}

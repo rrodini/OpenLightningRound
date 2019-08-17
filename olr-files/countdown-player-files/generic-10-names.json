@@ -1,0 +1,14 @@
+{ "description": "Generic 10: Student1,.., Student10.",
+  "players": [
+  { "rank": 1, "name": "Student1"},
+  { "rank": 2, "name": "Student2"},
+  { "rank": 3, "name": "Student3"},
+  { "rank": 4, "name": "Student4"},
+  { "rank": 5, "name": "Student5"},
+  { "rank": 6, "name": "Student6"},
+  { "rank": 7, "name": "Student7"},
+  { "rank": 8, "name": "Student8"},
+  { "rank": 9, "name": "Student9"},
+  { "rank": 10,"name": "Student10"}
+ ]
+}

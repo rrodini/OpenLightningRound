@@ -82,12 +82,12 @@ function reloadPlayers(pList) {
 
 }
 /**
- * initWidget - initialize the jqxWidgets on the admin/display screen.
+ * initWidget - initialize the jqxWidgets on the emcee/display screen.
  */
 function initWidgets () {
 	// save the initial font size.
 	currentFontSize = parseInt($("body").css('font-size'));
-	// just draw a sample admin screen to get the layout down
+	// just draw a sample emcee screen to get the layout down
 	$("#current_question").jqxPanel({width: '100%', height: '200px', theme: 'energyblue'}); // height: '50px'
 	$("#current_answer").jqxPanel({width: '100%', height:  '50px', theme: 'energyblue'}); // height: '25px'
 	$("#player_grid").jqxGrid(

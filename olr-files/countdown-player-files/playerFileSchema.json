@@ -1,0 +1,62 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "description",
+    "players"
+  ],
+  "properties": {
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The Description Schema",
+      "default": "",
+      "examples": [
+        "10 players w/ generic names, e.g. Student1, Student2, etc."
+      ],
+      "pattern": "^(.*)$"
+    },
+    "players": {
+      "$id": "#/properties/players",
+      "type": "array",
+      "title": "The Players Schema",
+      "items": {
+        "$id": "#/properties/players/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "rank",
+          "name"
+        ],
+        "properties": {
+          "rank": {
+            "$id": "#/properties/players/items/properties/rank",
+            "type": "integer",
+            "title": "The Rank Schema",
+            "default": 0,
+            "examples": [
+              1
+            ],
+            "minimum": 1.0,
+            "maximum": 10.0
+          },
+          "name": {
+            "$id": "#/properties/players/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "Student1"
+            ],
+            "minLength": 2,
+            "maxLength": 32,
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    }
+  }
+}

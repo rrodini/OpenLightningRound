@@ -1,0 +1,119 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "description",
+    "questions_and_answers"
+  ],
+  "properties": {
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The Description Schema",
+      "default": "",
+      "examples": [
+        "DO NOT USE. These questions are just for testing."
+      ],
+      "pattern": "^(.*)$"
+    },
+    "questions_and_answers": {
+      "$id": "#/properties/questions_and_answers",
+      "type": "array",
+      "title": "The Questions_and_answers Schema",
+      "items": {
+        "$id": "#/properties/questions_and_answers/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "q",
+          "a"
+        ],
+        "properties": {
+          "q": {
+            "$id": "#/properties/questions_and_answers/items/properties/q",
+            "type": "string",
+            "title": "The Q Schema",
+            "default": "",
+            "examples": [
+              "This is a very, very long question that may necessitate scrolling. Blah,blah,blah?"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "a": {
+            "$id": "#/properties/questions_and_answers/items/properties/a",
+            "type": "string",
+            "title": "The A Schema",
+            "default": "",
+            "examples": [
+              "15 (points)"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "f": {
+            "$id": "#/properties/questions_and_answers/items/properties/f",
+            "type": "integer",
+            "title": "The F Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          }
+        }
+      }
+    },
+    "figures": {
+      "$id": "#/properties/figures",
+      "type": "array",
+      "title": "The Figures Schema",
+      "default": null,
+      "items": {
+        "$id": "#/properties/figures/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "name",
+          "src",
+          "val"
+        ],
+        "properties": {
+          "name": {
+            "$id": "#/properties/figures/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "description": "this string is referred to in the Q/A part of file",
+            "default": "",
+            "examples": [
+              "figure-10"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "src": {
+            "$id": "#/properties/figures/items/properties/src",
+            "type": "string",
+            "title": "The Src Schema",
+            "description": "not used at present",
+            "default": "",
+            "examples": [
+              "figure-10-tiny.png"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "val": {
+            "$id": "#/properties/figures/items/properties/val",
+            "type": "string",
+            "title": "The Val Schema",
+            "description": "base 64 value of the image itself",
+            "default": "",
+            "examples": [
+              "<div><img src=data:image/png;base64,iVBORSuQmCC></div>"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    }
+  }
+}

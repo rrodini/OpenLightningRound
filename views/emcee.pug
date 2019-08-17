@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="initial-scale=1.0" name="viewport"/>
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title id='title'>Presentation Round</title>
+
+    <link rel="stylesheet" href="./jqxwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="./jqxwidgets/styles/jqx.energyblue.css" type="text/css" />
+    <link rel="stylesheet" href="./stylesheet/mathjax-asciimath.css" type="text/css" />
+    <link rel="stylesheet" href="./stylesheet/emcee.css" type="text/css" />
+
+    <script type="text/javascript" src="./jquery/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxdata.js"></script>
+<!--    <script type="text/javascript" src="./jqxwidgets/jqxradiobutton.js"></script> -->
+    <script type="text/javascript" src="./jqxwidgets/jqxbuttons.js"></script>
+<!--    <script type="text/javascript" src="./jqxwidgets/jqxbuttongroup.js"></script> -->
+    <script type="text/javascript" src="./jqxwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxgrid.pager.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxinput.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxnotification.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxpanel.js"></script>
+    <script type="text/javascript" src="./jqxwidgets/jqxwindow.js"></script>
+<!--    <script type="text/javascript" src="./jqxwidgets/jqxtree.js"></script> -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="./javascript/ooUtil.js"></script>
+    <script type="text/javascript" src="./javascript/abstractGame.js"></script>
+    <script type="text/javascript" src="./javascript/prGame.js"></script>
+    <script type="text/javascript" src="./javascript/olrGame.js"></script>
+    <script type="text/javascript" src="./javascript/crGame.js"></script>
+<!-- generated global variables/functions here -->
+
+script.
+    // global variables for emcee.js
+    var gameId = #{gameId};
+    var gameType = '#{gameType}';
+    var questionFileId = #{questionFileId};
+    var playerFileId = #{playerFileId};  // maybe zero
+    // endGame - do the CORS exchange with the Grails application.
+    function endGame() {
+        "use strict";
+        console.log("end game clicked.");
+        var endTime = new Date().toISOString();
+        var questionCount = Math.floor(Math.random() * 50);
+        // make ajax POST back to OLR Grails app
+        $.ajax({
+            // url value from .env file
+            url: '#{urlEndGame}',
+            method: 'PUT',
+            data: {game_id: #{gameId}, end_time: endTime, question_count: questionCount},
+            success: function (data) {
+                // url value from .env file
+                console.log('#{urlGameSummary}' + '#{gameId}');
+                location.href = '#{urlGameSummary}' + '#{gameId}';
+            },
+            failure: function (jqXHR, errMsg, errorThrown) {
+            },
+        })
+            .done(function () {
+            })
+            .fail(function () {
+            });
+    }
+
+<!-- end of generated global variables/functions here -->
+    <script type="text/javascript" src="./javascript/emcee.js"></script>
+    <script type="text/javascript" src="./javascript/emcee-projector.js"></script>
+    <!-- for typesetting math formulae.    -->
+    <script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_CHTML"></script>
+</head>
+<body class='default'>
+    <div id="room_div" class="float-center">Room #</div>
+    <div id="question_div" class="uniform-margin" >
+        <div>Question:</div>
+        <div id="current_question">
+        </div>
+    </div>
+    <div id="answer_div"  class="uniform-margin">
+        <div>Answer:</div>
+        <div id="current_answer">
+        </div>
+    </div>
+    <div id='marking_buttons'  class="uniform-margin float-center" >
+        <button class="marking-button" id="mark_correct" >Correct</button>
+        <button class="marking-button" id="mark_incorrect" >Incorrect</button>
+        <button class="marking-button" id="show_answer" >Show Answer</button>
+    </div>
+    <div id='status_div' class="uniform-margin float-center" >
+        Not ready for player registration.
+    </div>
+    <div id='player_grid'  class="uniform-margin" >
+        <!--<div id="jqxgrid1"></div>-->
+    </div>
+    <div id='question_grid' class="uniform-margin" >
+        <!--<div id='jqxgrid2'></div>-->
+    </div>
+    <div id='testing_buttons'  class="uniform-margin float-center" >
+        <button class="marking-button" id="test_buzzers" >Test Buzzers </button>
+        <button class="marking-button" id="ask_question" >Ask Question </button>
+    </div>
+
+    <div id='menu_div' >
+        <div id='menu' class="command-menu">
+            <ul>
+            <li id="game">End Game</li>
+            <li>License</li>
+            <li id="ver">Ver.</li>
+            </ul>
+        </div>
+    </div>
+<!-- "Login" pop-up window -->
+<!-- "Setup" pop-up window -->
+    <div id='setup_window' >
+        <div>Setup</div>
+        <div style="overflow: hidden">
+            <div><label for="room_num">Room #: </label><span id="room_num"></span></div>
+            <span style="color: red;" >Write down room #, start projector.<br/>Have players register.<br/>
+            </span>
+            <div id='setup_buttons'  class="uniform-margin" style="text-align:center" >
+                <button  id="setup_okay" value="OK">Okay</button>
+            </div>
+        </div>
+    </div>
+<!-- "License" pop-up window -->
+    <div id='license_window' >
+        <div>License</div>
+        <div style="overflow: hidden">
+            <p>
+            <div>This program uses the <a href="https://opensource.org/licenses/MIT" target="_blank" >MIT License</a>.</div>
+            </p>
+            <p>Credits:</p>
+            <p><div>
+                The program uses jQWidgets (&nbsp;<img src="./jqxwidgets/styles/images/jqxAnimated.gif" />&nbsp;jQWidgets rock!) which are <b>not</b> free for commercial use.
+                <a href="http://www.jqwidgets.com/license/" target="_blank" >jQWidgets License</a>.
+            </div></p>
+            <p><div>The program uses sound files created by: &apos;nofeedback&apos; and &apos;akanimbus&apos;.</div></p>
+            <div id='license_buttons'  class="uniform-margin" style="text-align:center" >
+                <button class="marking-button" id="license_okay" value="OK">Okay</button>
+            </div>
+        </div>
+    </div>
+<!-- "Select Folder / File" pop-up window -->
+<!-- "Select Game" pop-up window -->
+<!-- Notifications -->
+    <div id="timeNotification">
+        <div ><span id="currentTime" class="timer"></span></div>
+    </div>
+</body>
+</html>

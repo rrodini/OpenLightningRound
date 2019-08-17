@@ -1,12 +1,14 @@
-[
- { "1": "Justenn"},
- { "2": "Allen"},
- { "3": "Dylan"},
- { "4": "Eric"},
- { "5": "Rahul"},
- { "6": "Charlotte"},
- { "7": "Stanley"},
- { "8": "Sriman"},
- { "9": "Anish"},
- {"10": "ArnavT"}
-]
+{ "description": "GVMS students for CDR on 01/31/18.",
+  "players" : [
+    { "rank": 1, "name":"Justenn"},
+    { "rank": 2, "name":"Allen"},
+    { "rank": 3, "name":"Dylan"},
+    { "rank": 4, "name":"Eric"},
+    { "rank": 5, "name":"Rahul"},
+    { "rank": 6, "name":"Charlotte"},
+    { "rank": 7, "name":"Stanley"},
+    { "rank": 8, "name":"Sriman"},
+    { "rank": 9, "name":"Anish"},
+    { "rank":10, "name":"Arvant"}
+  ]
+}

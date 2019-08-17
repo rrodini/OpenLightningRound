@@ -1,5 +1,5 @@
 {
- "description": "DO NOT USE. These questions are just for automated testing.",
+ "description": "TESTING UPDATE 2. Two simple questions.",
  "questions_and_answers": [
     {"q": "What is 1+1?", "a": "2"},
     {"q": "What is 2+2?", "a": "4"}

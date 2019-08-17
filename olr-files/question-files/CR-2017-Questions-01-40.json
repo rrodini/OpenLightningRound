@@ -1,5 +1,5 @@
 {
-  "description": "2017 Chapter Competition Countdown Round Problems 1 - 40.",
+  "description": "2017 Chapter Countdown Round (1 - 40 questions) MATHCOUNTS&reg;",
   "questions_and_answers": [
     {"q": "If <i>f(x) = x<sup>2</sup> − 3</i> and <i>g(x) = 2x + 1</i>, what is <i>f(g(3))</i>?", "a": "46"},
     {"q": "What is the value of `((2^4)^9)/((4^8)^2)`?", "a": "16"},

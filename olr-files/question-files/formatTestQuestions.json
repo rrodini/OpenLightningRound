@@ -1,8 +1,8 @@
 {
- "description": "DO NOT USE. These questions are just for testing.",
+ "description": "DO NOT USE. These questions are just for format testing only.",
  "questions_and_answers": [
-   {"q": "This is a very, very long question that may necessitate scrolling.  During the first third of the basketball season, Katrina scored an average of 12 points per game. What is the average number of points she must score per game for the remaining two thirds of the season so that her average points scored per game for the entire season is 14 points?", "a": "15 (points)"},
-   {"q": "What is the value of `((2^4)^9)/((4^8)^2)`?", "a": "16"},
+   {"q": "This is a very, very long question that may necessitate scrolling.  During the first third of the basketball season, Katrina scored an average of 12 points per game. What is the average number of points she must score per game for the remaining two thirds of the season so that her average points scored per game for the entire season is 14 points?", "a": "15 (points)", "f":  1},
+   {"q": "What is the value of `((2^4)^9)/((4^8)^2)`?", "a": "16", "f":  0},
    {"q": "Which formula is the quadratic eqn? First formula: `sum_(i=1)^n i^3=((n(n+1))/2)^2` Second formula: `x = (-b +- sqrt(b^2-4ac))/(2a)`", "a": "2<sup>nd</sup> equation"},
    {"q": "What is the quadratic formula?", "a": "`(-b +- sqrt(b^2-4ac))/(2a)`"},
    {"q": "How many squares of any size are in this figure consisting of adjacent unit squares surrounding a larger square? `figure-10`", "a": "18"},
