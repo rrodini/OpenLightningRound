@@ -8,7 +8,8 @@ var app = require('../app');
 var debug = require('debug')('olrproxy:server');
 var http = require('http');
 let sockServer = require('../lib/sock_server'); //({pingTimeout: 300000});
-var dotenv = require('dotenv');
+let dotenv = require('dotenv');
+let fs = require('fs')
 let path = require('path');
 let winston = require('winston');
 //let winstonConf = require('../config/winston-config');
@@ -17,17 +18,21 @@ let logger
 /**
  * Get port from environment and store in Express.
  */
-
-dotenv.config();
-let configPath = path.resolve(__dirname , '../config/winston-config.json');
+// OS level env variables will be used!
+const result = dotenv.config();
+const overridePath = path.resolve( '.env.override');
+//const envConfig = dotenv.parse(fs.readFileSync(overridePath), {debug: true});
+const envConfig = dotenv.parse(fs.readFileSync('.env.override'));
+for (const k in envConfig) {
+// FOR DEBUGGING ONLY
+//    console.log(`env override ${k}: ${envConfig[k]}`);
+    process.env[k] = envConfig[k];
+}
+// FOR DEBUGGING ONLY
+// for (const k in process.env) {
+//     console.log(`env ${k}: ${process.env[k]}`);
+// }
 console.log(__dirname);
-// winstonConf.fromFileSync(configPath, function(error, winston) {
-//     if (error) {
-//         console.log('error during winston configuration');
-//     } else {
-//         console.log('winston alright');
-//     }
-// });
 // now we can start logging
 winston.level = process.env.LOGLEVEL || 'error';
 console.log(`logging at: ${winston.level} level`);

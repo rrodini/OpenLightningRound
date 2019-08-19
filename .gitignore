@@ -5,4 +5,5 @@ node_modules/
 # WebStorm (Intellij) files should not be versioned
 .idea/
 .env
+.env.override
 .git/
