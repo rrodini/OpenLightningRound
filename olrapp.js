@@ -1,4 +1,5 @@
 /**
+ * NOT USED - TO BE DELETED!
  * app.js - start the application
  */
 

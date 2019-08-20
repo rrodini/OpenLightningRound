@@ -1,1 +1,1 @@
-web: node olrapp.js
+web: node bin/www.js
