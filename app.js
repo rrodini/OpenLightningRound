@@ -34,6 +34,7 @@ app.use(function(req, res, next) {
     // }
     // else {
         //move on
+console.log(`Setting header: ACAO ${process.env.URLALLOWORIGIN}`);
         res.header('Access-Control-Allow-Origin', process.env.URLALLOWORIGIN);
         next();
     // }

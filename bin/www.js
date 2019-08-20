@@ -22,12 +22,12 @@ let logger
 const result = dotenv.config();
 const overridePath = path.resolve( '.env.override');
 //const envConfig = dotenv.parse(fs.readFileSync(overridePath), {debug: true});
-const envConfig = dotenv.parse(fs.readFileSync('.env.override'));
-for (const k in envConfig) {
+//const envConfig = dotenv.parse(fs.readFileSync('.env.override'));
+//for (const k in envConfig) {
 // FOR DEBUGGING ONLY
 //    console.log(`env override ${k}: ${envConfig[k]}`);
-    process.env[k] = envConfig[k];
-}
+//    process.env[k] = envConfig[k];
+//}
 // FOR DEBUGGING ONLY
 // for (const k in process.env) {
 //     console.log(`env ${k}: ${process.env[k]}`);
