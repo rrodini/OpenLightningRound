@@ -20,24 +20,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
-// Reply immediately to an OPTIONS request
+// Set response header for all requests.
 app.use(function(req, res, next) {
-    // //console.log("OPTIONS Filter");
-    // //intercepts OPTIONS method
-    // if ('OPTIONS' === req.method) {
-    //     res.header('Access-Control-Allow-Origin', process.env.URLALLOWORIGIN);
-    //     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST');
-    //     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-    //     //respond with 200
-    //     console.log(`OPTIONS method: allowing ${process.env.URLALLOWORIGIN}`);
-    //     res.send(200);
-    // }
-    // else {
-        //move on
-console.log(`Setting header: ACAO ${process.env.URLALLOWORIGIN}`);
-        res.header('Access-Control-Allow-Origin', process.env.URLALLOWORIGIN);
-        next();
-    // }
+//  console.log(`Setting header: ACAO ${process.env.URLALLOWORIGIN}`);
+    res.header('Access-Control-Allow-Origin', process.env.URLALLOWORIGIN);
+    next();
 });
 app.use('/projector', express.static(path.join(__dirname, 'public')));
 app.use('/startGame', startGameRouter);
