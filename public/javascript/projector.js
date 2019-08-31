@@ -88,6 +88,10 @@ window.onload = function() {
         console.log(">>disconnect reason: " + reason);
     });
 
+    socket.on('admin-disconnect', function (reason) {
+        window.alert("admin-disconnect:" + reason);
+    });
+
     socket.on('error', function (reason) {
         window.alert("error:" + reason.message);
         console.log(">>error reason: " + reason.message);
