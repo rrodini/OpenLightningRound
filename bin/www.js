@@ -49,7 +49,8 @@ app.set('port', port);
 /**
  * Create HTTP server.  Pass parameter for Heroku platform.
  */
-app.use(enforce.HTTPS({ trustProtoHeader: trustProtoHeader }));
+// Line below forces HTTPS but prevents CORS
+//app.use(enforce.HTTPS({ trustProtoHeader: trustProtoHeader }));
 var server = http.createServer(app);
 
 /**
