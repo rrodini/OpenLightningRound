@@ -22,9 +22,9 @@ let trustProtoHeader = process.env.NODE_ENV === 'production'
  */
 // OS level env variables will be used!
 const result = dotenv.config();
-const overridePath = path.resolve( '.env.override');
-const envConfig = dotenv.parse(fs.readFileSync('.env.override'));
 if (process.env.NODE_ENV === 'development') {
+    const overridePath = path.resolve( '.env.override');
+    const envConfig = dotenv.parse(fs.readFileSync('.env.override'));
     for (const k in envConfig) {
     // FOR DEV ONLY
         console.log(`env override ${k}: ${envConfig[k]}`);
