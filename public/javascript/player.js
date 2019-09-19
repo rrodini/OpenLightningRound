@@ -137,6 +137,9 @@ window.onload = function() {
 			socket.emit('register', {'name': name});
 		} else {  // assume test of buzzer or problem buzz
 			flash_background();
+            // NEW - make buzzer sound here.
+            var audio = document.getElementById("buzzer");
+            audio.play();
 			socket.emit('buzz', {'name': name});
 			console.log('  buzz>>server');
 		}
