@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
 app.use('/projector', express.static(path.join(__dirname, 'public')));
 app.use('/startGame', startGameRouter);
 app.use('/emcee', emceeRouter);
-app.use('/player', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
