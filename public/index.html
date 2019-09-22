@@ -1,20 +1,23 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="title">Buzzer</title>
-<link rel="stylesheet" type="text/css" href="./stylesheet/mathjax-asciimath.css" >
-<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <!-- below causes an infinite loop: seems that redirect is not to a specific page. -->
+    <!--<meta http-equiv="Refresh" content="1" url="http://localhost:3001/player.html" />-->
 </head>
-<body id="body" style="font-family: Times New Roman; background-color:#CCC; padding: 6px;" >
-  <div  id="message" style="background-color: white; border: 1px solid #CCC; width:100%; overflow:auto; overflow-x:hidden"
-        size="32" readonly="true">
-  </div>
-  <div id="button_div" style="text-align:center; " >
-   <button id="button" type="submit" style="width:100%; ; font-size:36px; " >Register</button>
-  </div>
-  <script type="text/javascript" src="/javascript/player.js"></script>
+<body onload="redirect()">
+    click on this link:
+    <a href="http://localhost:3001/player.html">http://localhost:3001/player.html</a>
+    <script>
+    // redirect to the player page.
+    function redirect() {
+        var href = window.location.href;
+        var protocol = 'https:';
+        if (href.indexOf('localhost') >= 0) {
+            protocol = 'http:';
+        }
+        var playerHref = protocol + '//' + window.location.host + '/player.html'
+        window.location = playerHref;
+    }
+    </script>
 </body>
 </html>

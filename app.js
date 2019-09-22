@@ -27,9 +27,11 @@ app.use(function(req, res, next) {
     next();
 });
 app.use('/projector', express.static(path.join(__dirname, 'public')));
+app.use('/player', express.static(path.join(__dirname, 'public')));
 app.use('/startGame', startGameRouter);
 app.use('/emcee', emceeRouter);
 app.use('/', express.static(path.join(__dirname, 'public')));
+// Note a default reference to index.html results in a redirect to player.html
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

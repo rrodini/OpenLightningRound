@@ -364,7 +364,7 @@ window.onload = function() {
 	});
 
     socket.on('disconnect', function (reason) {
-		window.alert("disconnect:" + reason);
+		//window.alert("disconnect:" + reason);
         console.log(">>disconnect reason: " + reason);
     });
 
