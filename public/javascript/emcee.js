@@ -50,6 +50,7 @@ function hideTimer() {
 function displayTimer() {
 	// hide and kill any active timers
 	hideTimer();
+	$("#timeNotification").jqxNotification({position: "top-right"});
 	$("#timeNotification").jqxNotification("open");
 	startTimer(45);
 }

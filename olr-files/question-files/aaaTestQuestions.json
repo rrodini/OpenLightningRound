@@ -1,7 +1,12 @@
 {
- "description": "TESTING UPDATE 2. Two simple questions.",
+ "description": "SAMPLE. This question file is a simple example",
  "questions_and_answers": [
-    {"q": "What is 1+1?", "a": "2"},
-    {"q": "What is 2+2?", "a": "4"}
-  ]
+    {"q": "What is 1+1?", "a": "2", "f":  0},
+    {"q": "What is the sum of the <i>interior</i> angles of a triangle?", "a": "180<sup>o</sup>", "f": 0},
+    {"q": "What is the value of `((2^4)^9)/((4^8)^2)`?", "a": "16", "f":  0},
+    {"q": "How many squares of any size are in this figure consisting of adjacent unit squares surrounding a larger square? `figure-10`", "a": "18", "f": 0}
+   ],
+   "figures" : [
+     {"name" : "figure-10", "src":"figure-10-tiny.png", "val":"<div><img src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEkAAABJAQMAAABLvZmfAAAABlBMVEX///8jHyCZ/QWRAAAALUlEQVQoz2P4DwMNDA0MCgwcDEwMDEOPieYLBpDo0GP+//8AyGQe8r4YXikKAHXFeVRwVlYzAAAAAElFTkSuQmCC></div>"}
+   ]
 }

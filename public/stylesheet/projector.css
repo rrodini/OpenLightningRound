@@ -1,0 +1,44 @@
+body {
+    background-color: blue;
+    margin: 0px;
+}
+.very-short { /* 1 => used to display answers.  */
+    width: 10vw;
+    height: 10vh;
+    font-family: "Times New Roman", serif;
+    font-size: 5vw;
+    color: white;
+    margin: 40vh 45vw;
+}
+.short {  /* 2 => not currently used.  */
+    width: 20vw;
+    height: 20vh;
+    font-family: "Times New Roman", serif;
+    font-size: 5vw;
+    color: white;
+    margin: 35vh 40vw;
+}
+.medium { /* 3 => used for most questions.  */
+    width: 50vw;
+    height: 50vh;
+    font-family: "Times New Roman", serif;
+    font-size: 5vw;
+    color: white;
+    margin: 25vh 25vw;
+}
+.long {/* 4 => used for long questions.  */
+    width: 75vw;
+    height: 75vh;
+    font-family: "Times New Roman", serif;
+    font-size: 4vw;
+    color: white;
+    margin: 12.5vh 12.5vw;
+}
+.very-long {/* 5 => used for very long questions.  */
+    width: 95vw;
+    height: 95vh;
+    font-family: "Times New Roman", serif;
+    font-size: 4vw;
+    color: white;
+    margin: 12.5vh 12.5vw;
+}

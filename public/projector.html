@@ -4,96 +4,17 @@
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 	<meta name="msapplication-tap-highlight" content="no" />
 	<title id='title'>Presentation Round</title>
-	<!--
-
-        <link rel="stylesheet" href="./jqxwidgets/styles/jqx.base.css" type="text/css" />
-        <link rel="stylesheet" href="./jqxwidgets/styles/jqx.energyblue.css" type="text/css" />
-        <link rel="stylesheet" href="./stylesheet/mathjax-asciimath.css" type="text/css" />
-        <script type="text/javascript" src="./jquery/jquery-2.2.4.min.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxcore.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxdata.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxscrollbar.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxbuttons.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxmenu.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxlistbox.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxdropdownlist.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxpanel.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxgrid.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxgrid.pager.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxgrid.selection.js"></script>
-        <script type="text/javascript" src="./jqxwidgets/jqxinput.js"></script>
-     -->
 	<link rel="stylesheet" href="./stylesheet/mathjax-asciimath.css" type="text/css" />
+	<link rel="stylesheet" href="./stylesheet/projector.css" type="text/css" />
 	<script type="text/javascript" src="./jquery/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="./javascript/projector.js"></script>
 	<script type="text/javascript" src="./javascript/emcee-projector.js"></script>
-<!-- TBD: move to separate stylesheet -->
-<style>
-/*.jqx-panel {
-	font-family: Times New Roman, serif;
-} */
-body {
-	background-color: blue;
-	margin: 0px;
-}
-.very-short { /* 1 => used to display answers.  */
- 	width: 10vw;
-	height: 10vh;
-	font-family: "Times New Roman", serif;
-	font-size: 5vw;
-	color: white;
-	margin: 40vh 45vw;
-}
-.short {  /* 2 => not currently used.  */
-	width: 20vw;
-	height: 20vh;
-	font-family: "Times New Roman", serif;
-	font-size: 5vw;
-	color: white;
-	margin: 35vh 40vw;
-}
-.medium { /* 3 => used for most questions.  */
-	width: 50vw;
-	height: 50vh;
-	font-family: "Times New Roman", serif;
-	font-size: 5vw;
-	color: white;
-	margin: 25vh 25vw;
-}
-.long {/* 4 => used for long questions.  */
-	width: 75vw;
-	height: 75vh;
-	font-family: "Times New Roman", serif;
-	font-size: 4vw;
-	color: white;
-	margin: 25vh 12.5vw;
-}
-
-</style>
 </head>
 <body>
 	<div id="central_div" >
 
 	</div>
-<!-- previous html that displayed player grid with scores
-    <div id="question_div" class="uniform-margin" >
-        <div>Question:</div>
-        <div id="current_question">
-        </div>
-    </div>
-    <div id="answer_div"  class="uniform-margin">
-		<div>Answer:</div>
-		<div id="current_answer">
-		</div>
-	</div>
-	<div id='status_div' class="uniform-margin float-center" >
-		Not ready for player registration.
-	</div>
-    <div id='player_grid'  class="uniform-margin" >
-        <div id="jqxgrid1"></div>
-    </div>
--->
   <audio src="./media/doorbell.mp3" type="audio/mp3" preload="auto" id="buzzer" ></audio>
 </body>
 </html>
