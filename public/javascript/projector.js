@@ -9,12 +9,12 @@ var invitationCount = 0; // room number match attempts.
 /**
  * displayItem - display the new item (Question / Answers / etc.)
  */
-function displayItem(item, size) {
+function displayItem(item, format) {
 	// the item has been formatted on the server.  It may contain MathJax formulas (spans and divs)
 	// or images.  The servers decides how is should be formatted based on its raw length (character count).
 	let newClass = "";
     $('#central_div').removeClass();
-    switch (size) {
+    switch (format) {
 		case 1:
 			newClass = 'very-short';
 			break;
@@ -26,6 +26,9 @@ function displayItem(item, size) {
             break;
         case 4:
             newClass = 'long';
+            break;
+        case 5:
+            newClass = 'very-long';
             break;
 	}
 	$('#central_div').addClass(newClass);
@@ -40,15 +43,6 @@ function displayItem(item, size) {
  * 3. respond to socket messages from the server
  */
 window.onload = function() {
-	// initialize all jQWidgets
-    //	initWidgets();
-	// $(window).resize( function () {
-	// 	"use strict";
-	// 	// there seems to be a flaw in jqWidgets that makes this necessary.
-	// 	$("#player_grid").jqxGrid({rowsheight: currentRowsHeight});
-	// 	$(".jqx-grid-column-header").css("font-size", currentFontSize);
-	// 	$(".jqx-grid-cell").css("font-size", currentFontSize);
-	// });
 	// open web socket back to host w/ reconnection set to 'true'
 	// Default is 'true' which has dead screens re-attach automatically.
 	socket = io("//" + location.host + "/projector", {transports: ['websocket'], reconnection: false});
@@ -71,12 +65,12 @@ window.onload = function() {
 	socket.on('ask-question', function(data) {
 		console.log('>>ask-question ');
         console.log(' ' + data.item);
-        console.log(' ' + data.size);
-		displayItem(data.item, data.size);
+        console.log(' ' + data.format);
+		displayItem(data.item, data.format);
 	});
 	socket.on('show-answer', function(data) {
 		console.log('>>show-answer');
-		displayItem(data.item, data.size);
+		displayItem(data.item, data.format);
 	});
     socket.on('buzz', function(data) {
         console.log('>>buzz');
