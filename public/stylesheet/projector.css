@@ -1,22 +1,25 @@
+/* ATTENTION: this file must be kept in sync with OLRMain application version. */
 body {
     background-color: blue;
     margin: 0px;
 }
 .very-short { /* 1 => used to display answers.  */
-    width: 10vw;
-    height: 10vh;
-    font-family: "Times New Roman", serif;
-    font-size: 5vw;
-    color: white;
-    margin: 40vh 45vw;
-}
-.short {  /* 2 => not currently used.  */
     width: 20vw;
     height: 20vh;
     font-family: "Times New Roman", serif;
     font-size: 5vw;
     color: white;
-    margin: 35vh 40vw;
+    margin: 40vh 40vw;
+    border: 1px solid red;
+}
+.short {  /* 2 => not currently used.  */
+    width: 30vw;
+    height: 30vh;
+    font-family: "Times New Roman", serif;
+    font-size: 5vw;
+    color: white;
+    margin: 40vh 40vw;
+    border: 1px solid red;
 }
 .medium { /* 3 => used for most questions.  */
     width: 50vw;
@@ -25,20 +28,30 @@ body {
     font-size: 5vw;
     color: white;
     margin: 25vh 25vw;
+    border: 1px solid red;
 }
 .long {/* 4 => used for long questions.  */
-    width: 75vw;
-    height: 75vh;
+    width: 65vw;
+    height: 65vh;
     font-family: "Times New Roman", serif;
     font-size: 4vw;
     color: white;
-    margin: 12.5vh 12.5vw;
+    margin: 17.5vh 17.5vw;
+    border: 1px solid red;
 }
 .very-long {/* 5 => used for very long questions.  */
-    width: 95vw;
-    height: 95vh;
+    width: 80vw;
+    height: 80vh;
     font-family: "Times New Roman", serif;
     font-size: 4vw;
     color: white;
-    margin: 12.5vh 12.5vw;
+    margin: 10vh 10vw;
+    border: 1px solid red;
+}
+.figure {float: right}
+/* extra stuff for determining format value.
+*/
+.align-radio-center {
+    margin: 10px;
+    text-align: center;
 }

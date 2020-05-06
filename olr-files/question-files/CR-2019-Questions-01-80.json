@@ -1,7 +1,7 @@
 {
   "description": "2019 Chapter Competition Countdown Round (1 - 80 questions). MATHCOUNTS&reg;",
   "questions_and_answers": [
-    {"q": "A square field, bordered on one side by a river, has an area of 484 m<sup>2</sup>. How many meters of fencing are required to fence its three remaining sides?","a": " 66 (meters)"},
+    {"q": "A square field, bordered on one side by a river, has an area of 484 m<sup>2</sup>. How many meters of fencing are required to fence its three remaining sides?","a": "66 (meters)"},
     {"q": "In a bowl containing 100 cereal clusters, 6% of the clusters are crunchy oat and the rest are crispy graham. How many crispy graham clusters must be added so that 2% of the cereal clusters in the bowl are crunchy oat?","a": "200 (clusters)"},
     {"q": "If `2x + 3y = 4` and `3x + 2y = 11`, what is the value of `x + y`?","a": "3"},
     {"q": "A certain math club has 40 members, each of whom is a student in the sixth, seventh or eighth grade. If the math club has more members in the sixth grade than it has in the seventh and eighth grades combined, what is the least possible number of members in the sixth grade?","a": "21 (members)"},
@@ -14,7 +14,7 @@
     {"q": "If x is a positive real number such that `4^x = x^4`, what is the least possible integer value of x?","a": "2"},
     {"q": "If a professional blender operates at a rate of 24,000 revolutions per minute, how many seconds will it take the blender to complete 100 revolutions? Express your answer as a common fraction.","a": "1/4 seconds"},
     {"q": "The length of a rectangular sheet of paper is twice its width. Folding it in half along the dotted line shown, creates a new rectangle with perimeter 70 cm. How many centimeters wide was the original rectangular sheet? `figure-13`","a": "14 (cm)"},
-    {"q": "The figure shows three different views of a cube whose faces are numbered from 1 through 6. What number is on the face opposite the face numbered 3? `figure-14`","a": "5 "},
+    {"q": "The figure shows three different views of a cube whose faces are numbered from 1 through 6. What number is on the face opposite the face numbered 3? `figure-14`","a": "5"},
     {"q": "What is the value of ` 7 + 6 xx 5 - 4 xx 3^2`?","a": "1"},
     {"q": "Two 5-inch-by-7-inch sheets of paper are placed on a flat surface so that the short edges of one sheet are parallel to the long edges of the other sheet, as shown. In square inches, what is the maximum possible area of the gray region of overlap between the two sheets? `figure-16`","a": "25 in<sup>2</sup>"},
     {"q": "If x + y = 27 and x is 50% of y, what is the value of y?","a": "18"},

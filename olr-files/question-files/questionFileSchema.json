@@ -16,8 +16,7 @@
       "default": "",
       "examples": [
         "DO NOT USE. These questions are just for testing."
-      ],
-      "pattern": "^(.*)$"
+      ]
     },
     "questions_and_answers": {
       "$id": "#/properties/questions_and_answers",

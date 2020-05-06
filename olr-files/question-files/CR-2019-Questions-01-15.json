@@ -1,0 +1,26 @@
+{
+  "description": "2019 Chapter Competition Countdown Round (1 - 15 questions). MATHCOUNTS&reg;",
+  "questions_and_answers": [
+    {"q": "A square field, bordered on one side by a river, has an area of 484 m<sup>2</sup>. How many meters of fencing are required to fence its three remaining sides?","a": "66 (meters)", "f":  4},
+    {"q": "In a bowl containing 100 cereal clusters, 6% of the clusters are crunchy oat and the rest are crispy graham. How many crispy graham clusters must be added so that 2% of the cereal clusters in the bowl are crunchy oat?","a": "200 (clusters)", "f":  4},
+    {"q": "If `2x + 3y = 4` and `3x + 2y = 11`, what is the value of `x + y`?","a": "3", "f":  3},
+    {"q": "A certain math club has 40 members, each of whom is a student in the sixth, seventh or eighth grade. If the math club has more members in the sixth grade than it has in the seventh and eighth grades combined, what is the least possible number of members in the sixth grade?","a": "21 (members)", "f":  4},
+    {"q": "Mazen takes 8 minutes to bike 2 miles to work. What is his average speed, in miles per hour?","a": "15 (mph)", "f":  3},
+    {"q": "A standard 52-card deck has 13 cards in each of four suits. If two cards are drawn randomly without replacement, what is the probability that they are the same suit? Express your answer as a common fraction.","a": "4/17", "f":  4},
+    {"q": "On Sunday, the low temperature in Fargo was -6°C. Each day after that, the daily low temperature rose 2°C. In degrees Celsius, what was the low temperature in Fargo, on Friday of that week?","a": "4 (°C)", "f":  4},
+    {"q": "The arithmetic mean of 3, 7, x and y is 9. What is the arithmetic mean of x and y?","a": "13", "f":  3},
+    {"q": "Gwen bought a new 100-sheet notebook to be used exclusively for math assignments. Beginning on Monday, September 1st, she uses exactly eight sheets every week for her math assignments. At this rate, during what month will Gwen have used all 100 sheets in the notebook?","a": "November", "f":  4},
+    {"q": "The seven novels in Maria's favorite book series contain 335, 352, 448, 767, 1021, 656 and 767 pages. What is the median number of pages in these novels?","a": "656 (pages)", "f":  4},
+    {"q": "If x is a positive real number such that `4^x = x^4`, what is the least possible integer value of x?","a": "2", "f":  3},
+    {"q": "If a professional blender operates at a rate of 24,000 revolutions per minute, how many seconds will it take the blender to complete 100 revolutions? Express your answer as a common fraction.","a": "1/4 seconds", "f":  4},
+    {"q": "The length of a rectangular sheet of paper is twice its width. Folding it in half along the dotted line shown, creates a new rectangle with perimeter 70 cm. How many centimeters wide was the original rectangular sheet? `figure-13`","a": "14 (cm)", "f":  4},
+    {"q": "The figure shows three different views of a cube whose faces are numbered from 1 through 6. What number is on the face opposite the face numbered 3? `figure-14`","a": "5", "f":  4},
+    {"q": "What is the value of `7 + 6 xx 5 - 4 xx 3^2`?","a": "1", "f":  3}
+  ],
+  "figures" : [
+    {"name" : "figure-13", "src":"figure-13.png", "val": "<div class-figure><img src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJcAAABRBAMAAAAtACnjAAAAMFBMVEX///8FBQXJyclmZmb29vbk5OStra2ZmZmjo6Pt7e17e3twcHDb29uPj4/AwMC2trbnZcp4AAAAzUlEQVRYw2MYBeQAQeoAWhhGFf+NGjZq2Khho4aNGjZq2Khho4aNGkY1w0oZmBIY3AMY1BhYSxjYFBjCHRiSMJhAWRaoQnQmWCHMMFuGyTYMzQWcxgHsFgzBlgyXG3iMJ3BZMChbMiz+wGTtwGXHoLyBYbMCnxWDtxHD5wWcxgocVmA9F4B6OMxBeophhrUwMCkweDgwKDGwwJlQ54QxMKQysCYwsAUgmBDnoOsZ/BEwatioYaOGjRo2atioYaOGjRo2Mg0btAOYo2DYAACRkj70d9cYVwAAAABJRU5ErkJggg==></div>"
+    },
+    {"name" : "figure-14", "src":"figure-14.png", "val": "<div class=figure><img src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH8AAAAqCAMAAACtIHRlAAAAM1BMVEX///9UVFTKysoFBQWSkpIcHBzy8vLl5eWvr68xMTF0dHRDQ0ODg4NkZGTY2NihoaG9vb1JXqjNAAADbklEQVRYw+2X25LsIAhFgwjek/z/1x7bjsGOdCaP56GtmqqZDLJgi4rLb/zGNPbonxma6PmRoYuWH8J5C8Emsu5PS58oA+UHhkCxYFwf0NdIsLfMMJrbjDKBb5nVCbf52BA8twnJ/xmopOOOebrwLR0RbPtqGLEYEexGVgXodXUF6MFM4cgQoB6OjE/BuRClvMpyyBgFd5aQ1styyBDBeQMKcFiyJiufgZ7+tmOGJCuS9JQLbs12VZIVSTzVlE0GgOLPcvxQZSXqsSNVVqGa/YrUt2PAQwMX8B27CcGyQWgfCTszYfcTMHN3mao5bMZ48QOYR+1Ddfc2z3Vec4RI8dAmhGS7Yc/R1J+CpgmK8dQm2Q6VHAHrpDaH0huyFwQY+SByuUjF+vrXuK7WiqFUUMaQbanqSvXak9/q5NA7IEUbQ/KyoObCH/ensda+l3wHalEJ/6OC9mq481i9wm/KdVmdqYPHgp74cwVJ5Y18qaC5eke+VKGZNvTMn/fnWn97BaryZRfKzlP5bZcmP58vOv9UVwLV+HJP8N7rRuXLPeH6Ct3wRSVMPVDnJr53wx4/z4ZJfzkYmpjDyur8CFA2vkYfcb/ywcpMOFNCZyc+0cXwjs82EtorPxMo/JUwf7o1iHjlm7aJmcXQhcw3+sPI99gE86jwY6VlcVtLAZX9Z1Obk8TQIKb1Id8itP9pfMjLhu5wy5Ew2Go28eF1nzj0A38ntE/5uH/lV2/JHm4NQiWo/Gacy8BfuGDiR3wIoRr69IVvu9sVaVf5JjRjk0b+4hIaje8m/l7rx1Ge+JiLb9kdbteEhRU+48ZY+TjwTUFMTuND2NInf6lSIbkr31UXIPyGRVL4tUwJ07KffM74rlM1/0x44XNq0o783hAsa4jCr1JrfAaMBAn6Qr0Ad/vPJwQ/8GtQ+vnLdilS1u2Lfv+0Mj4LFTLq5w/5HlZEO/J7XFtvlDbuczblWDPSf1jXv3kxdL4fyAW+NLq89up1SsM4XjcjXy6ksZ1VDOVCGvly3Yp6esMs1+3oVnuHSNxiKBfyTVcvfP3BwMNXMFNDossKRm1IZEi71fnag+mqLhi9pZ9UASMN2d+vOpT+/f6xBGZaIV1WMNKQ3o4WI25zoKq6Kd8+6UTzZLUV+qpuFe3RY1lbIV3Wlwi/8Rv/1/gHOoYhPPDS9kUAAAAASUVORK5CYII=></div>"
+    }
+  ]
+}
