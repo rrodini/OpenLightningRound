@@ -365,16 +365,19 @@ window.onload = function() {
 	});
 
     socket.on('disconnect', function (reason) {
-		//window.alert("disconnect:" + reason);
-        console.log(">>disconnect reason: " + reason);
+		console.log(">>emcee-disconnect reason: " + reason);
+		window.alert("emcee-disconnect: " + reason);
     });
 
 	socket.on('player-disconnect', function (reason) {
-		window.alert("player-disconnect:" + reason);
+		console.log("player-disconnect: "+ reason);
+		// Don't bother the emcee with a window.alert
+		//window.alert("player-disconnect: " + reason);
 	});
 
 	socket.on('projector-disconnect', function (reason) {
-		window.alert("projector-disconnect:" + reason);
+		console.log("projector-disconnect: " + reason);
+		window.alert("projector-disconnect: " + reason);
 	});
 
 	socket.on('error', function (reason) {
