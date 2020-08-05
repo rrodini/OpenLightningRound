@@ -270,7 +270,7 @@ function initWidgets () {
 	});
 // popup window for "Setup" dialog
 	$("#setup_window").jqxWindow({
-		width: 400, height: 150, isModal: true, autoOpen: false, theme: 'energyblue',
+		width: 400, height: 200, isModal: true, autoOpen: false, theme: 'energyblue',
 		okButton: $('#setup_okay'),
 		initContent: function () {
 			$('#setup_okay').jqxButton('focus');
