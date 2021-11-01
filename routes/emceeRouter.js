@@ -1,4 +1,4 @@
-/** startGameRouter.js
+/** emceeRouter.js
  * This is a non-GUI entry point that receives game parameters (keys).
  * Also, inserts the game record into the DB and passes the game key back to the caller.
  */

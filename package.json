@@ -2,7 +2,7 @@
   "name": "OpenLightningRound",
   "version": "4.2.2",
   "description": "High tech version of MathCounts Countdown Round.",
-  "main": "olrapp.js",
+  "main": "www.js",
   "engines": {
     "node": "14.x"
   },
