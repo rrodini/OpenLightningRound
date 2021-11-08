@@ -9,6 +9,7 @@ let path = require('path');
 let logger = require('morgan');
 let startGameRouter = require('./routes/startGameRouter');
 let emceeRouter = require('./routes/emceeRouter');
+let emceeUrlRouter = require('./routes/emceeUrlRouter');
 
 let app = express();
 
@@ -30,6 +31,7 @@ app.use('/projector', express.static(path.join(__dirname, 'public')));
 app.use('/player', express.static(path.join(__dirname, 'public')));
 app.use('/startGame', startGameRouter);
 app.use('/emcee', emceeRouter);
+app.use('/emceeUrl', emceeUrlRouter);
 app.use('/', express.static(path.join(__dirname, 'public')));
 // Note a default reference to index.html results in a redirect to player.html
 

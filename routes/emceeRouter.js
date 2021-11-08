@@ -25,10 +25,12 @@ router.get('/', function (req, res, next) {
             case 2: gameType = 'CR'; break;
         }
         const qfId = params[1];
+        const falsyString = '';
         const pfId = (gameType === 'CR')? params[2] : 0;
         // Declare game parameters, then return emcee.html, emcee.js
         res.render('emcee', {gameId: gameId, gameType: gameType, questionFileId: qfId, playerFileId: pfId,
-             urlEndGame: process.env.URLENDGAME, urlGameSummary: process.env.URLGAMESUMMARY});
+            questionFileAbsPath: falsyString, playerFileAbsPath: falsyString,
+            urlEndGame: process.env.URLENDGAME, urlGameSummary: process.env.URLGAMESUMMARY});
     });
 });
 

@@ -1,20 +1,28 @@
 /* global window, document, location, prompt, io */
 
-function promptForName() {
-    // modal prompt for name
-    var name = null;
-    var first = true;
-    // loop till a valid name is returned
-    while (name === null) {
-        name = prompt(first?"Enter your name.":"Don't hit cancel, hit ok.");
-        if (!name) { // empty string
-            name = null;
+/**
+ * Modal prompt for a value
+ * @param message displayed to user
+ * @param wantNumber true => call parseInt, false => don't
+ * @returns name | room #
+ */
+function promptForValue(message, wantNumber) {
+    var val = undefined;
+    // loop till a valid value is returned
+    while (!val) {
+        val = prompt(message);
+        if (typeof val === 'string') {
+            val = val.trim();
+            if (wantNumber) {
+                val = parseInt(val); // converts to an integer or NaN
+            }
         }
-        first = false;
+        if (!val) { // empty string, undefined, null, NaN
+            val = undefined;
+        }
     }
-    return name;
+    return val;
 }
-
 window.onload = function() {
     var invitationCount = 0;
     var window_height = window.innerHeight;
@@ -34,8 +42,7 @@ window.onload = function() {
         console.log(">>invitation");
         invitationCount++;
         if (invitationCount <= 3) {
-            var num = window.prompt("Enter room #:");
-            roomNumber = parseInt(num);
+            var num = promptForValue("Enter room # (Don't hit cancel):", true);
             socket.emit("join-room", num);
         } else {
             alert("Please refresh page and try again.")
@@ -44,7 +51,7 @@ window.onload = function() {
     socket.on('room-joined', function(data) {
         console.log('>>room-joined');
         // modal prompt for name
-        name = promptForName();
+        name = promptForValue("Enter your name (Don't hit cancel):", false);
         socket.emit('register', {'name': name});
         console.log('  register>>server');
     });

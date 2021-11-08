@@ -38,30 +38,36 @@
 
 script.
     // global variables for emcee.js
+    // When launched from CORS gameId, gameType, questionFileId, playerFileId are valued
+    // When launched from URL     gameType, questionFilePath, playerFilePath are valued
     var gameId = #{gameId};
     var gameType = '#{gameType}';
     var questionFileId = #{questionFileId};
-    var playerFileId = #{playerFileId};  // maybe zero
+    var questionFileAbsPath = '#{questionFileAbsPath}';
+    var playerFileId = #{playerFileId};  // optional
+    var playerFileAbsPath = '#{playerFileAbsPath}';  // optional
     // endGame - do the CORS exchange with the Grails application.
     function endGame() {
         "use strict";
         console.log("end game clicked.");
-        var endTime = new Date().toISOString();
-        var questionCount = Math.floor(Math.random() * 50);
-        // make ajax POST back to OLR Grails app
-        $.ajax({
-            // url value from .env file
-            url: '#{urlEndGame}',
-            method: 'PUT',
-            data: {game_id: #{gameId}, end_time: endTime, question_count: questionCount},
-            success: function (data) {
+        if (gameId) {
+            var endTime = new Date().toISOString();
+            // TODO: questionCount should be actual value from game played.
+            var questionCount = Math.floor(Math.random() * 50);
+            // make ajax POST back to OLR Grails app
+            $.ajax({
                 // url value from .env file
-                console.log('#{urlGameSummary}' + '#{gameId}');
-                location.href = '#{urlGameSummary}' + '#{gameId}';
-            },
-            failure: function (jqXHR, errMsg, errorThrown) {
-            },
-        })
+                url: '#{urlEndGame}',
+                method: 'PUT',
+                data: {game_id: #{gameId}, end_time: endTime, question_count: questionCount},
+                success: function (data) {
+                    // url value from .env file
+                    console.log('#{urlGameSummary}' + '#{gameId}');
+                    location.href = '#{urlGameSummary}' + '#{gameId}';
+                },
+                failure: function (jqXHR, errMsg, errorThrown) {
+                },
+            })
             .done(function () {
             })
             .fail(function () {
@@ -114,7 +120,6 @@ script.
             </ul>
         </div>
     </div>
-<!-- "Login" pop-up window -->
 <!-- "Setup" pop-up window -->
     <div id='setup_window' >
         <div>Setup</div>

@@ -309,8 +309,12 @@ window.onload = function() {
 		$('#room_num').html(data.roomNum.toString());
 		$("#setup_window").jqxWindow('open');
 
-		socket.emit('load-questions', {questionFileId: questionFileId});
+		socket.emit('load-questions', {questionFileId: questionFileId, questionFileAbsPath: questionFileAbsPath});
 		console.log('  load-questions>>server');
+	});
+	socket.on('register-error', function(data) {
+		console.log('>>register-error');
+		window.alert('Game type error: ' + data.name + '/' + data.message + '.');
 	});
 	socket.on('load-questions', function(data) {
 		console.log('>>load-questions');
@@ -318,12 +322,16 @@ window.onload = function() {
 			questionList = data;  // questionList
 			nextQuestion = 0;
 			loadQuestions(questionList);
-			socket.emit('load-players', {playerFileId: playerFileId});
+			socket.emit('load-players', {playerFileId: playerFileId, playerFileAbsPath: playerFileAbsPath});
 			console.log('  load-players>>server');
 		} else {
 			// no question list (why???)
 			window.alert('Bad questions file! Start new game.');
 		}
+	});
+	socket.on('load-questions-error', function(data) {
+		console.log('>>load-questions-error');
+		window.alert('Load questions error: ' + data.name + '/' + data.message + '.');
 	});
 	socket.on('load-players', function(data) {
 		console.log('>>load-players');
@@ -332,9 +340,13 @@ window.onload = function() {
 			socket.emit('start-game', playerList);
 			console.log('  start-game>>server');
 		} else {
-			// no question list (why???)
+			// no player list (why???)
 			window.alert('Bad players file! Start new game.');
 		}
+	});
+	socket.on('load-players-error', function(data) {
+		console.log('>>load-players-error');
+		window.alert('Load players error: ' + data.name + '/' + data.message + '.');
 	});
 	socket.on('start-game', function(data) {
 		console.log('>>start-game');
