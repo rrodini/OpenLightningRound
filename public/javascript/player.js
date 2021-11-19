@@ -52,7 +52,7 @@ window.onload = function() {
         console.log('>>room-joined');
         // modal prompt for name
         name = promptForValue("Enter your name (Don't hit cancel):", false);
-        socket.emit('register', {'name': name});
+        socket.emit('register', {name: name});
         console.log('  register>>server');
     });
 	socket.on('registered', function(data) {
@@ -69,8 +69,8 @@ window.onload = function() {
 		// client was just told to refresh the screen so change status
         setTimeout(function () {
             "use strict";
-           name = promptForName();
-           socket.emit('register', {'name': name});
+           name = promptForValue("Enter your name (Don't hit cancel):", false);
+           socket.emit('register', {name: name});
            console.log('  register>>server');
         }, 2000);
 	});
@@ -147,7 +147,7 @@ window.onload = function() {
             // NEW - make buzzer sound here.
             var audio = document.getElementById("buzzer");
             audio.play();
-			socket.emit('buzz', {'name': name});
+			socket.emit('buzz', {name: name});
 			console.log('  buzz>>server');
 		}
 	};

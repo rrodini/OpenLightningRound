@@ -361,6 +361,13 @@ window.onload = function() {
 		displayQuestion(data.q);
 		displayAnswer(data.a)
 	});
+	socket.on('buzz', function(data) {
+		console.log('>>buzz');
+		// TODO: Get this to work on ios
+		// see https://stackoverflow.com/questions/31776548/why-cant-javascript-play-audio-files-on-iphone-safari
+		var audio = document.getElementById("buzzer");
+		audio.play();
+	});
 	socket.on('update-marking-buttons', function (data) {
 		console.log('>>update-marking-buttons');
 		// data is true or false (literals).

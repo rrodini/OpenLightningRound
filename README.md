@@ -3,7 +3,8 @@ This is a node.js application that implements the [MathCounts Countdown Round](h
 quiz with a minimum number of people and lots of [commonplace technology](https://github.com/rrodini/OpenLightningRound/wiki/OLR-Equipment).
 
 ## Usage
-To run login in at (http://olrmain.herokuapp.com/).
+To run login in at http://olrmain.herokuapp.com/
+Players login in at http://olr.herokuapp.com/
 
 ## License
 MIT
