@@ -21,10 +21,10 @@ function getAbsPath(root, path) {
 }
 
 // returns emcee.html (with some dynamically generated js script), emcees.js
-router.get('/', function (req, res, next) {
+router.get('/', function (next) {
     "use strict";
-    const questionFileRoot = process.env.QUESTIONFILEROOT;
-    const playerFileRoot = process.env.PLAYERFILEROOT;
+    const questionFileRoot = process.env.QUESTION_FILE_ROOT;
+    const playerFileRoot = process.env.PLAYER_FILE_ROOT;
     const gameType = req.query.gameType;
     const questionFilePath = req.query.questionFilePath || '';
     const playerFilePath = req.query.playerFilePath || '';
