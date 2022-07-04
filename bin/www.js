@@ -21,10 +21,10 @@ let trustProtoHeader = process.env.NODE_ENV === 'production'
  * Get port from environment and store in Express.
  */
 // OS level env variables will be used!
-const result = dotenv.config();
+const result = dotenv.config({path: '../.env'} );
 if (process.env.NODE_ENV === 'development') {
-    const overridePath = path.resolve( '.env.override');
-    const envConfig = dotenv.parse(fs.readFileSync('.env.override'));
+    const overridePath = path.resolve( '../.env.override');
+    const envConfig = dotenv.parse(fs.readFileSync('../.env.override'));
     for (const k in envConfig) {
     // FOR DEV ONLY
         console.log(`env override ${k}: ${envConfig[k]}`);
@@ -41,7 +41,7 @@ winston.level = process.env.LOGLEVEL || 'error';
 console.log(`logging at: ${winston.level} level`);
 logger = winston.loggers.get('application');
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3001');
 console.log(`Env port: ${process.env.PORT}`);
 
 app.set('port', port);
