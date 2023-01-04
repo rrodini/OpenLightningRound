@@ -40,9 +40,9 @@ console.log(__dirname);
 winston.level = process.env.LOGLEVEL || 'error';
 console.log(`logging at: ${winston.level} level`);
 logger = winston.loggers.get('application');
-
+// TODO: Check this PORT logic
 var port = normalizePort(process.env.PORT || '3001');
-console.log(`Env port: ${process.env.PORT}`);
+console.log(`Env port: ${port}`);
 
 app.set('port', port);
 
