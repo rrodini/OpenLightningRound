@@ -10,7 +10,7 @@ body {
     font-size: 5vw;
     color: white;
     margin: 40vh 40vw;
-    border: 1px solid red;
+    /* border: 1px solid; */
 }
 .short {  /* 2 => not currently used.  */
     width: 30vw;
@@ -19,7 +19,7 @@ body {
     font-size: 5vw;
     color: white;
     margin: 40vh 40vw;
-    border: 1px solid red;
+    /* border: 1px solid; */
 }
 .medium { /* 3 => used for most questions.  */
     width: 50vw;
@@ -28,7 +28,7 @@ body {
     font-size: 5vw;
     color: white;
     margin: 25vh 25vw;
-    border: 1px solid red;
+    /* border: 1px solid; */
 }
 .long {/* 4 => used for long questions.  */
     width: 65vw;
@@ -37,7 +37,7 @@ body {
     font-size: 4vw;
     color: white;
     margin: 17.5vh 17.5vw;
-    border: 1px solid red;
+    /* border: 1px solid; */
 }
 .very-long {/* 5 => used for very long questions.  */
     width: 80vw;
@@ -46,9 +46,11 @@ body {
     font-size: 4vw;
     color: white;
     margin: 10vh 10vw;
-    border: 1px solid red;
+    /* border: 1px solid; */
 }
 .figure {float: right}
+/* width: 25% => used to enlarge image (can't explain) */
+img { width: 25%; float:right}
 /* extra stuff for determining format value.
 */
 .align-radio-center {

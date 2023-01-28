@@ -7,3 +7,5 @@ node_modules/
 .env
 .env.override
 .git/
+# Don't need the original question files
+question-files-original/

@@ -13,6 +13,7 @@ let dotenv = require('dotenv');
 let fs = require('fs')
 let path = require('path');
 let winston = require('winston');
+let db = require('../lib/DbUpdate');
 let logger
 // flag is needed on Heroku
 let trustProtoHeader = process.env.NODE_ENV === 'production'
@@ -22,28 +23,30 @@ let trustProtoHeader = process.env.NODE_ENV === 'production'
  */
 // OS level env variables will be used!
 const result = dotenv.config({path: '../.env'} );
+const postgresVerPromise = db.readPostgresVer();
 if (process.env.NODE_ENV === 'development') {
     const overridePath = path.resolve( '../.env.override');
     const envConfig = dotenv.parse(fs.readFileSync('../.env.override'));
     for (const k in envConfig) {
     // FOR DEV ONLY
-        console.log(`env override ${k}: ${envConfig[k]}`);
         process.env[k] = envConfig[k];
     }
 }
-// FOR DEBUGGING ONLY
-// for (const k in process.env) {
-//     console.log(`env ${k}: ${process.env[k]}`);
-// }
-console.log(__dirname);
+
+// echo the ENVIRONMENT (except for DATABASEURL)
+console.log('ENVIRONMENT:');
+//console.log(result.parsed);
+logEnvironment();
+// echo RUNTIME versions
+postgresVerPromise.then ( res => {
+        const postgresVer = res.rows[0].version;
+        logRuntimeVersions(postgresVer);
+    });
 // now we can start logging
 winston.level = process.env.LOGLEVEL || 'error';
-console.log(`logging at: ${winston.level} level`);
 logger = winston.loggers.get('application');
 // TODO: Check this PORT logic
 var port = normalizePort(process.env.PORT || '3001');
-console.log(`Env port: ${port}`);
-
 app.set('port', port);
 
 /**
@@ -56,7 +59,6 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
@@ -64,7 +66,6 @@ server.on('listening', onListening);
 /**
  * Normalize a port into a number, string, or false.
  */
-
 function normalizePort(val) {
     var port = parseInt(val, 10);
 
@@ -80,11 +81,9 @@ function normalizePort(val) {
 
     return false;
 }
-
 /**
  * Event listener for HTTP server "error" event.
  */
-
 function onError(error) {
     if (error.syscall !== 'listen') {
         throw error;
@@ -108,17 +107,54 @@ function onError(error) {
             throw error;
     }
 }
-
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onListening() {
     var addr = server.address();
     var bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    debug('Listening on ' + bind);
+    debug('OLR Listening on ' + bind);
     // now socket server is also listening
     sockServer.listen(server);
+}
+/**
+ * logRuntimeVersions - log important version info
+ */
+function logRuntimeVersions(postgresVer) {
+    console.log('RUNTIME:');
+    console.log(' node: ' + process.version);
+    console.log(' ' + postgresVer);
+}
+/**
+ * logEnviroment - log environment variables.
+ * 
+ * Notes:
+ * - must update envNames with change to either DEV or PROD.
+ */
+function logEnvironment() {
+    const envNames = {
+        'NODE_ENV': {log: 'both'},
+        'NODE_MODULES_CACHE': {log: 'production'},
+        'LOGLEVEL': {log: 'both'},
+        'DATABASE_URL':  {log: 'development'},
+        'DBSSL':  {log: 'development'},
+        'URLALLOWORIGIN':  {log: 'both'},
+        'URLENDGAME':  {log: 'both'},
+        'URLGAMESUMMARY':  {log: 'both'},
+        'QUESTIONFILEROOT': {log: 'development'},
+        'PLAYERFILEROOT': {log: 'development'}
+    }
+    const envProcessKeys = Object.keys(process.env);
+    //console.log( envProcessKeys );
+    for (key in envNames) {
+        if (envProcessKeys.indexOf(key) >= 0) {
+            const log = envNames[key].log;
+            var doLog = log === 'both' || process.env.NODE_ENV === log;
+            if (doLog) {
+                console.log(` ${key}: ${process.env[key]}`);
+            }
+        }
+    }
 }
